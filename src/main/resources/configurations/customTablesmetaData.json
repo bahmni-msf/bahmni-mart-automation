@@ -1,0 +1,566 @@
+{
+  "customTables": [
+    {
+      "tableName": "programs",
+      "columns": [
+        "program_id",
+        "program_name",
+        "program_description",
+        "creator",
+        "date_created",
+        "date_changed",
+        "changed_by"
+      ]
+    },
+    {
+      "tableName": "program_outcomes",
+      "columns": [
+        "program_id",
+        "program_name",
+        "program_outcome"
+      ]
+    },
+    {
+      "tableName": "patient_program_data",
+      "columns": [
+        "patient_id",
+        "encounter_id",
+        "program_id",
+        "episode_id",
+        "patient_program_id",
+        "date_enrolled",
+        "date_completed",
+        "location_id",
+        "location_name",
+        "program_outcome",
+        "creator",
+        "date_created",
+        "date_changed",
+        "changed_by"
+      ]
+    },
+    {
+      "tableName": "patient_state",
+      "columns": [
+        "patient_state_id",
+        "patient_program_id",
+        "patient_id",
+        "program_id",
+        "program_name",
+        "state",
+        "state_name",
+        "start_date",
+        "end_date",
+        "creator",
+        "date_created",
+        "date_changed",
+        "changed_by"
+      ]
+    },
+    {
+      "tableName": "program_workflow",
+      "columns": [
+        "program_id",
+        "program_workflow_id",
+        "program_workflow_name"
+      ]
+    },
+    {
+      "tableName": "program_workflow_states",
+      "columns": [
+        "program_workflow_state_id",
+        "program_workflow_id",
+        "state_name",
+        "program_workflow_name",
+        "initial",
+        "terminal",
+        "creator",
+        "date_created",
+        "date_changed",
+        "changed_by"
+      ]
+    },
+    {
+      "tableName": "person_details",
+      "columns": [
+        "person_id",
+        "person_name_id",
+        "preferred",
+        "gender",
+        "birthdate",
+        "birthtime",
+        "birthdate_estimated",
+        "dead",
+        "death_date",
+        "deathdate_estimated",
+        "cause_of_death"
+      ]
+    },
+    {
+      "tableName": "person_address",
+      "columns": [
+        "person_id",
+        "preferred",
+        "address1",
+        "address2",
+        "address3",
+        "address4",
+        "address5",
+        "address6",
+        "address7",
+        "address8",
+        "address9",
+        "address10",
+        "address11",
+        "address12",
+        "address13",
+        "address14",
+        "address15",
+        "city_village",
+        "state_province",
+        "postal_code",
+        "country",
+        "county_district",
+        "latitude",
+        "longitude",
+        "start_date",
+        "end_date"
+      ]
+    },
+    {
+      "tableName": "address_hierarchy_level",
+      "columns": [
+        "address_hierarchy_level_id",
+        "name",
+        "parent_level_id",
+        "address_field"
+      ]
+    },
+    {
+      "tableName": "person_attribute_info",
+      "columns": [
+        "person_attribute_type_id",
+        "name",
+        "description"
+      ]
+    },
+    {
+      "tableName": "patient_allergy_status",
+      "columns": [
+        "patient_id",
+        "allergy_status"
+      ]
+    },
+    {
+      "tableName": "medication_data",
+      "columns": [
+        "patient_id",
+        "patient_program_id",
+        "patient_program_name",
+        "order_id",
+        "coded_drug_name",
+        "non_coded_drug_name",
+        "dose",
+        "dose_units",
+        "frequency",
+        "route",
+        "start_date",
+        "calculated_end_date",
+        "date_stopped",
+        "stop_reason",
+        "duration",
+        "duration_units",
+        "quantity",
+        "quantity_units",
+        "additional_instructions",
+        "dispense",
+        "encounter_id",
+        "orderer"
+      ]
+    },
+    {
+      "tableName": "appointment_service",
+      "columns": [
+        "appointment_service_id",
+        "service_name",
+        "service_description",
+        "service_start_time",
+        "service_end_time",
+        "service_max_load",
+        "service_duration",
+        "location_name",
+        "service_type",
+        "service_type_duration"
+      ]
+    },
+    {
+      "tableName": "service_availability",
+      "columns": [
+        "appointment_service_id",
+        "service_name",
+        "service_location",
+        "availability_day_of_week",
+        "availability_start_time",
+        "availability_end_time",
+        "availability_max_load"
+      ]
+    },
+    {
+      "tableName": "appointment_speciality",
+      "columns": [
+        "speciality_id",
+        "speciality"
+      ]
+    },
+    {
+      "tableName": "patient_appointment",
+      "columns": [
+        "patient_id",
+        "appointment_id",
+        "appointment_provider",
+        "appointment_start_time",
+        "appointment_end_time",
+        "appointment_speciality",
+        "appointment_service",
+        "appointment_service_type",
+        "appointment_status",
+        "appointment_location",
+        "appointment_kind",
+        "comments"
+      ]
+    },
+    {
+      "tableName": "patient_visit_details",
+      "columns": [
+        "visit_id",
+        "patient_id",
+        "visit_type_id",
+        "visit_type_name",
+        "visit_type_description",
+        "visit_start_date",
+        "visit_end_date",
+        "indication_concept_id",
+        "location_id",
+        "location_name"
+      ]
+    },
+    {
+      "tableName": "patient_encounter_details",
+      "columns": [
+        "patient_id",
+        "visit_id",
+        "encounter_id",
+        "encounter_type_id",
+        "encounter_type_name",
+        "encounter_type_description",
+        "edit_privilege",
+        "view_privilege",
+        "location_name",
+        "form_id",
+        "encounter_datetime"
+      ]
+    },
+    {
+      "tableName": "encounter_provider_and_role",
+      "columns": [
+        "encounter_provider_id",
+        "encounter_id",
+        "provider_id",
+        "encounter_role_id",
+        "encounter_role_name",
+        "encounter_role_description"
+      ]
+    },
+    {
+      "tableName": "provider",
+      "columns": [
+        "provider_id",
+        "person_id",
+        "name",
+        "identifier",
+        "provider_role_id"
+      ]
+    },
+    {
+      "tableName": "location",
+      "columns": [
+        "location_id",
+        "name",
+        "description",
+        "address1",
+        "address2",
+        "address3",
+        "address4",
+        "address5",
+        "address6",
+        "address7",
+        "address8",
+        "address9",
+        "address10",
+        "address11",
+        "address12",
+        "address13",
+        "address14",
+        "address15",
+        "city_village",
+        "state_province",
+        "postal_code",
+        "country",
+        "latitude",
+        "longitude",
+        "county_district",
+        "parent_location"
+      ]
+    },
+    {
+      "tableName": "location_tag_map",
+      "columns": [
+        "location_id",
+        "location_tag_id",
+        "location_tag_name",
+        "location_tag_description"
+      ]
+    },
+    {
+      "tableName": "location_attribute_details",
+      "columns": [
+        "location_attribute_id",
+        "location_id",
+        "attribute_type_id",
+        "value_reference",
+        "location_attribute_type_name",
+        "location_attribute_type_description",
+        "location_attribute_type_datatype",
+        "location_attribute_type_datatype_config",
+        "location_attribute_type_preferred_handler",
+        "location_attribute_type_handler_config",
+        "location_attribute_type_min_occurs",
+        "location_attribute_type_max_occurs"
+      ]
+    },
+    {
+      "tableName": "visit_attribute_details",
+      "columns": [
+        "visit_id",
+        "visit_attribute_id",
+        "value_reference",
+        "visit_attribute_type_id",
+        "visit_attribute_type_name",
+        "visit_attribute_type_description",
+        "visit_attribute_type_datatype",
+        "visit_attribute_type_datatype_config",
+        "visit_attribute_type_preferred_handler",
+        "visit_attribute_type_handler_config",
+        "visit_attribute_type_min_occurs",
+        "visit_attribute_type_max_occurs"
+      ]
+    },
+    {
+      "tableName": "provider_attribute_details",
+      "columns": [
+        "provider_attribute_id",
+        "attribute_type_id",
+        "provider_id",
+        "value_reference",
+        "provider_attribute_type_name",
+        "provider_attribute_type_description",
+        "provider_attribute_datatype",
+        "provider_attribute_datatype_config",
+        "provider_attribute_type_preferred_handler",
+        "provider_attribute_type_handler_config",
+        "provider_attribute_type_min_occurs",
+        "provider_attribute_type_max_occurs"
+      ]
+    },
+    {
+      "tableName": "bed_patient_assignment",
+      "columns": [
+        "patient_id",
+        "bed_id",
+        "bed_number",
+        "date_started",
+        "date_stopped",
+        "encounter_id",
+        "encounter_datetime",
+        "visit_id",
+        "visit_type"
+      ]
+    },
+    {
+      "tableName": "bed_tags",
+      "columns": [
+        "bed_id",
+        "bed_location",
+        "bed_number",
+        "bed_status",
+        "bed_tag_name",
+        "date_created",
+        "date_changed",
+        "date_stopped"
+      ]
+    },
+    {
+      "tableName": "current_bed_details",
+      "columns": [
+        "bed_id",
+        "bed_location",
+        "bed_number",
+        "bed_type",
+        "bed_status"
+      ]
+    },
+    {
+      "tableName": "conditions",
+      "columns": [
+        "condition_id",
+        "previous_condition_id",
+        "patient_id",
+        "status",
+        "condition_name",
+        "is_coded_condition_name",
+        "onset_date",
+        "additional_detail",
+        "end_date",
+        "end_reason",
+        "creator_name",
+        "date_created"
+      ]
+    },
+    {
+      "tableName": "person_attributes",
+      "columns": [
+        "person_id",
+        "campComments",
+        "campDistrict",
+        "campVillage",
+        "caretakerDob",
+        "caretakerEmail",
+        "caretakerFacebook",
+        "caretakerGender",
+        "caretakerNameArabic",
+        "caretakerNameEnglish",
+        "caretakerNationality",
+        "caretakerPhoneNumber1",
+        "caretakerPhoneNumber2",
+        "caretakerViber",
+        "caretakerWhatsapp",
+        "dateofArrival",
+        "emailAddress",
+        "emergencyContactName",
+        "emergencyContactNumber",
+        "expectedDateofArrival",
+        "facebook",
+        "id1DateOfExpiry",
+        "id2DateOfExpiry",
+        "id2DocNumber",
+        "id2Document",
+        "id3Document",
+        "isCareTakerRequired",
+        "legalRepalsoCaretaker",
+        "legalRepDob",
+        "legalRepGender",
+        "legalRepNationality",
+        "legalRepRelationWithPatient",
+        "nameoftheBlock",
+        "nameoftheCamp",
+        "nameoftheStreet",
+        "nationality1",
+        "nationality2",
+        "occupation",
+        "phoneNumber1",
+        "phoneNumber2",
+        "phoneNumber3",
+        "relationWithPatient",
+        "spokenLanguages",
+        "statusofOfficialIDdocuments",
+        "viber",
+        "whatsapp"
+      ]
+    },
+    {
+      "tableName": "visit_attributes",
+      "columns": [
+        "visit_id",
+        "Visit_Status",
+        "Admission_Status"
+      ]
+    },
+    {
+      "tableName": "surgical_block",
+      "columns": [
+        "surgical_block_id",
+        "primary_provider_name",
+        "creator_name",
+        "location_name",
+        "block_starttime",
+        "block_endtime",
+        "date_created",
+        "date_changed",
+        "changed_by"
+      ]
+    },
+    {
+      "tableName": "surgical_appointment",
+      "columns": [
+        "surgical_appointment_id",
+        "surgical_block_id",
+        "patient_id",
+        "sort_weight",
+        "status",
+        "actual_start_datetime",
+        "actual_end_datetime",
+        "notes",
+        "date_created",
+        "date_changed",
+        "creator_name",
+        "change_by"
+      ]
+    },
+    {
+      "tableName": "surgical_appointment_attribute_type_details",
+      "columns": [
+        "name",
+        "description"
+      ]
+    },
+    {
+      "tableName": "surgical_appointment_attributes",
+      "columns": [
+        "surgical_appointment_id",
+        "procedure",
+        "estTimeHours",
+        "estTimeMinutes",
+        "cleaningTime",
+        "otherSurgeon",
+        "surgicalAssistant",
+        "anaesthetist",
+        "scrubNurse",
+        "circulatingNurse",
+        "notes"
+      ]
+    },
+    {
+      "tableName": "provider_attributes",
+      "columns": [
+        "provider_id",
+        "otCalendarColor",
+        "Available_for_appointments"
+      ]
+    },
+    {
+      "tableName": "patient_identifier",
+      "columns": [
+        "patient_id",
+        "OpenMRS_Identification_Number",
+        "Old_Identification_Number",
+        "Patient_Identifier"
+      ]
+    },
+    {
+      "tableName": "program_attributes",
+      "columns": [
+        "patient_program_id"
+      ]
+    }
+  ]
+}

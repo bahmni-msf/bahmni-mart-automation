@@ -1,0 +1,51 @@
+{
+  "allforms":
+  [
+    {
+      "form_name": "first_stage_validation",
+      "conceptsList": [
+        "id_first_stage_validation",
+        "patient_id",
+        "encounter_id",
+        "fstg,_type_of_medical_information_received",
+        "fstg,_date_received",
+        "fstg,_is_the_medical_file_complete?",
+        "stage",
+        "fstg,_date_of_presentation_at_1st_stage",
+        "fstg,_outcomes_for_1st_stage_surgical_validation",
+        "fstg,_priority",
+        "fstg,_name_(s)_of_surgeon_1",
+        "fstg,_name_(s)_of_surgeon_2",
+        "fstg,_does_the_patient_need_surgical_final_validation",
+        "fstg,_postpone_reason",
+        "fstg,_medical_file_to_be_submitted_again_by",
+        "fstg,_refused_reason",
+        "fstg,_outcomes_for_1st_stage_anaesthesia_validation",
+        "fstg,_name_(s)_of_anaesthetist"
+      ]
+    },
+    {
+      "form_name": "second_stage_validation",
+      "conceptsList": [
+        "id_first_stage_validation",
+        "patient_id",
+        "encounter_id",
+        "fstg,_type_of_medical_information_received",
+        "fstg,_date_received",
+        "fstg,_is_the_medical_file_complete?",
+        "stage",
+        "fstg,_date_of_presentation_at_1st_stage",
+        "fstg,_outcomes_for_1st_stage_surgical_validation",
+        "fstg,_priority",
+        "fstg,_name_(s)_of_surgeon_1",
+        "fstg,_name_(s)_of_surgeon_2",
+        "fstg,_does_the_patient_need_surgical_final_validation",
+        "fstg,_postpone_reason",
+        "fstg,_medical_file_to_be_submitted_again_by",
+        "fstg,_refused_reason",
+        "fstg,_outcomes_for_1st_stage_anaesthesia_validation",
+        "fstg,_name_(s)_of_anaesthetist"
+      ]
+    }
+  ]
+}
