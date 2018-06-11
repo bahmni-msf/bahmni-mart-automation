@@ -1,0 +1,11 @@
+{
+  "Complications" :{
+    "Patient complication":"Acute Kidney Injury",
+    "Grade of complication":"Grade I - No treatment"
+  },
+  "First Stage Validation":{
+    "Document(s) needed to be complete" : "No Documents",
+    "Specialty": "Plastic;Orthopedic",
+    "Outcome for 1st stage surgical validation" : "Valid"
+  }
+}
