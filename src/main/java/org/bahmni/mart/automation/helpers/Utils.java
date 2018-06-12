@@ -3,12 +3,10 @@ package org.bahmni.mart.automation.helpers;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Utils {
@@ -80,5 +78,69 @@ public class Utils {
         }
 
         return DBconn;
+    }
+
+    public static ResultSet getTableData (Connection dbconn, String table_name, int patientID) throws SQLException {
+        //String table_name = allTables.getString(3); // This is faster compared to using TABLE_NAME
+        DatabaseMetaData dbm = dbconn.getMetaData();
+        Statement stmt = dbconn.createStatement();
+        String query = String.format("Select * from %s where patient_id=%d order by obs_datetime desc limit 1", table_name,patientID);
+        System.out.println("Executing query for patient: "+ query);
+        //ResultSet rs = stmt.executeQuery("Select * from "+ table_name + " " + "where patient_id="+ patientID +" order by obs_datetime desc limit 1");
+        ResultSet rs = stmt.executeQuery(query);
+//        while(rs.next()) {
+//                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getInt(3)+"  " + rs.getString(4));
+//        }
+
+        return rs;
+    }
+
+    public static Map<String,String> getTableColumnsAndTypes (Connection dbconn, String table_name) throws SQLException {
+        //String table_name = allTables.getString(3); // This is faster compared to using TABLE_NAME
+        ArrayList<String> columnList = new ArrayList<String>();
+        Map<String, String> columnNameTypeMap = new HashMap<>();
+        String[] columnsList = {};
+        DatabaseMetaData dbm = dbconn.getMetaData();
+        ResultSet tableSchemaSet = dbm.getColumns(null, null, table_name, null);
+        //System.out.println("Schema for table: " + table_name);
+        while (tableSchemaSet.next()) {
+//                System.out.print("Column Name: " + tableSchemaSet.getString("COLUMN_NAME") + " "
+//                        + "Column Data: " + tableSchemaSet.getString("TYPE_NAME"));
+            //columnList.add(tableSchemaSet.getString("COLUMN_NAME"));
+            //columnNameTypeMap.put(tableSchemaSet.getString("COLUMN_NAME"),tableSchemaSet.getString("TYPE_NAME"));
+            // index value "4" below is equivalent to using "COLUMN_NAME" and "6" is "TYPE_NAME" but indexes are faster
+            columnNameTypeMap.put(tableSchemaSet.getString(4),tableSchemaSet.getString(6));
+        }
+
+        return columnNameTypeMap;
+    }
+
+    public static int getPatientIdentifier (Connection dbconn, String patientUI_ID) throws SQLException {
+        //String table_name = allTables.getString(3); // This is faster compared to using TABLE_NAME
+        //String columnName = "identifier";
+        DatabaseMetaData dbm = dbconn.getMetaData();
+        Statement stmt = dbconn.createStatement();
+        String stmt1 = String.format("select * from patient_identifier where identifier='%s'", patientUI_ID);
+
+        System.out.println(stmt1);
+        ResultSet rs = stmt.executeQuery(stmt1);
+//        while(rs.next()) {
+//                System.out.println(rs.getInt(1));
+//        }
+        rs.next();
+        return rs.getInt(2);
+    }
+
+    public String getRestURL() throws  IOException {
+
+        String restURL;
+        Properties connprops = new Properties();
+        InputStream ism = this.getClass().getClassLoader().getResourceAsStream("connection.properties");
+        connprops.load(ism);
+
+        restURL = connprops.getProperty("restEndPointURL");
+
+        return restURL;
+
     }
 }

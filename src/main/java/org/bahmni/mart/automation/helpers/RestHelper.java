@@ -10,6 +10,7 @@ import static java.util.Objects.isNull;
 
 public class RestHelper {
     private static int INTERVAL = 10000;
+
     public static String startBatchJob(String hostUrl) throws UnirestException {
         return Unirest.post(getTaskExecutionUrl(hostUrl))
                 .queryString("name", "create-bahmni-mart")
@@ -41,4 +42,6 @@ public class RestHelper {
         return methodPoller.poll(INTERVAL).method(() -> getDetails(hostUrl, jobExeId))
                 .until(RestHelper::isJobComplete).execute();
     }
+
+
 }

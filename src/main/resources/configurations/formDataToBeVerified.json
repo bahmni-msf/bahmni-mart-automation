@@ -1,0 +1,34 @@
+{
+  "first_stage_validation":{
+    "fstg_type_of_medical_information_received" : "1 , New medical file",
+    "fstg_outcomes_for_1st_stage_surgical_validation" : "1 , Valid",
+    "fstg_date_received": "2018-04-04",
+    "fstg_is_the_medical_file_complete": "1 , Yes",
+    "stage": "4",
+    "fstg_date_of_presentation_at_1st_stage": "2018-04-13",
+    "fstg_priority": "1 , Low",
+    "fstg_name_s_of_surgeon_1": "1 , Dr. Ali Al-Ani",
+    "fstg_name_s_of_surgeon_2": "4 , Dr. Ashraf Nabhan",
+    "fstg_does_the_patient_need_surgical_final_validation": "1 , Yes",
+    "fstg_postpone_reason": null,
+    "fstg_medical_file_to_be_submitted_again_by": null,
+    "fstg_refused_reason": null,
+    "fstg_outcomes_for_1st_stage_anaesthesia_validation": "1 , Fits anaesthesia criteria",
+    "fstg_name_s_of_anaesthetist": "3 , Dr. Abdulraoof Al-Ahmad",
+    "location_id": "10",
+    "location_name": "Admission",
+    "program_id": "1",
+    "program_name": "Reconstructive Surgery"
+  },
+  "surgeon_pre_op_assessment_and_treatment_plan": {
+    "sap_date_of_consultation": "2018-04-27",
+    "sap_associated_neural_injury": "No",
+    "sap_associated_vascular_injury": "Yes",
+    "sap_is_patient_for_surgery": "No",
+    "sap_initial_general_plan": "Needs Physio / Other consultation",
+    "sap_frequency_of_operations": "One Operation",
+    "sap_sites_donor_areas_excluded": "All objectives one site",
+    "sap_estimated_length_of_stay": "Less than 30 days",
+    "sap_does_the_patient_need_further_admissions": "No"
+    }
+}

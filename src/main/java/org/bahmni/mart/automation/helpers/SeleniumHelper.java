@@ -1,14 +1,6 @@
 package org.bahmni.mart.automation.helpers;
 
-import com.google.common.base.Strings;
-import com.google.gson.stream.JsonReader;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import org.bahmni.mart.automation.Pages.ConsultationPage;
-import org.bahmni.mart.automation.Pages.HomePage;
-import org.bahmni.mart.automation.Pages.LoginPage;
-import org.bahmni.mart.automation.Pages.ProgramManagementPage;
-import org.bahmni.mart.automation.Pages.RegistrationFirstPage;
-import org.bahmni.mart.automation.Pages.RegistrationSearch;
+import org.bahmni.mart.automation.Pages.*;
 import org.bahmni.mart.automation.models.FormData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -26,70 +18,103 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 public class SeleniumHelper {
 
-    public static void main(String args[]) {
-        System.setProperty("webdriver.gecko.driver", "/Users/lakshmip/Documents/chromedriver");
-        System.setProperty("webdriver.chrome.driver", "/Users/lakshmip/Documents/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+//    public static void main(String args[]) {
+//        System.setProperty("webdriver.gecko.driver", "/Users/lakshmip/Documents/chromedriver");
+//        System.setProperty("webdriver.chrome.driver", "/Users/lakshmip/Documents/chromedriver");
+//        WebDriver driver = new ChromeDriver();
+//        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+//
+//        login(driver);
+//        goToProgramDashBoard(driver);
+//        goToConsultation(driver);
+//        //fillFormData(driver, "test", );
+//    }
 
-        login(driver);
-        goToProgramDashBoard(driver);
-        goToConsultation(driver);
-        fillFormData(driver);
+    public static void fillFormData(WebDriver driver, String formName, FormData formData) {
+        //List<FormData> formDataList = FormDataJsonLoader.readFormDataFromJson();
+
+        ObservationsPage obspage = PageFactory.initElements(driver, ObservationsPage.class);
+
+            obspage.selectTemplate(formName, driver);
+            PageWaits.waitForSpinner(driver);
+
+            obspage.fillTemplateData(formData, driver);
+            PageWaits.waitForSpinner(driver);
+
+            obspage.verifyTemplateData(formData, driver);
+            PageWaits.waitForSpinner(driver);
     }
 
-    private static void fillFormData(WebDriver driver) {
-        List<FormData> formDataList = JsonLoader.readFormDataFromJson();
-
-        for(FormData formData : formDataList) {
-            selectTemplate(formData.getFormName(), driver);
-            waitForSpinner(driver);
-
-            fillTemplateData(formData, driver);
-            waitForSpinner(driver);
-
-            verifyTemplateData(formData, driver);
-            waitForSpinner(driver);
-        }
-    }
-
-    private static void goToConsultation(WebDriver driver) {
+    public static void goToConsultation(WebDriver driver, String patientIQ) {
         ProgramManagementPage pmp = PageFactory.initElements(driver, ProgramManagementPage.class);
-        pmp.clickonProgram();
+//        pmp.clickonProgram();
+//        waitForSpinner(driver);
+        pmp.goToBackPage();
+        PageWaits.waitForSpinner(driver);
 
+        IntermediateSearchPage isp = PageFactory.initElements(driver, IntermediateSearchPage.class);
+        isp.goToMainHome();
+        PageWaits.waitForSpinner(driver);
+        HomePage home = new HomePage(driver);
+        home.clickRegistrationApp();
         waitForSpinner(driver);
+        RegistrationSearch rs = new RegistrationSearch(driver);
+        rs.searchUsingIdentifier(patientIQ);
+        waitForSpinner(driver);
+        RegistrationFirstPage rfp = PageFactory.initElements(driver, RegistrationFirstPage.class);
+        rfp.enterProgramDashboardPage();
+        //rfp.enterVisitDetailsPage();
+        waitForSpinner(driver);
+
+        pmp.clickonProgram();
+        waitForSpinner(driver);
+
         ConsultationPage clp = PageFactory.initElements(driver, ConsultationPage.class);
         clp.clickOnConsultation();
         waitForSpinner(driver);
     }
 
-    private static void goToProgramDashBoard(WebDriver driver) {
+    public static void goToProgramDashBoard(WebDriver driver, String patientIQ) {
+//        HomePage home = new HomePage(driver);
+//        home.clickRegistrationApp();
+//        waitForSpinner(driver);
+//        RegistrationSearch rs = new RegistrationSearch(driver);
+//        rs.searchUsingIdentifier(patientIQ);
+//        waitForSpinner(driver);
+        RegistrationFirstPage rfp = PageFactory.initElements(driver, RegistrationFirstPage.class);
+        rfp.enterVisitDetailsPage();
+        waitForSpinner(driver);
+        ProgramManagementPage pmp = PageFactory.initElements(driver, ProgramManagementPage.class);
+        // We are hardcoding the program name and program start date here. These can be generalized and externalized when needed.
+        pmp.enrollToProgram("Reconstructive Surgery", "04/13/2018");
+        PageWaits.waitForSpinner(driver);
+    }
+
+    public static void goToNewPatientForm(WebDriver driver) {
         HomePage home = new HomePage(driver);
         home.clickRegistrationApp();
         waitForSpinner(driver);
         RegistrationSearch rs = new RegistrationSearch(driver);
-        rs.searchUsingIdentifier("IQ102020M");
-        waitForSpinner(driver);
-        RegistrationFirstPage rfp = PageFactory.initElements(driver, RegistrationFirstPage.class);
-        rfp.enterProgramDashboardPage();
+        rs.clickCreateNew();
         waitForSpinner(driver);
     }
 
-    private static void login(WebDriver driver) {
+    public static void login(WebDriver driver) {
         LoginPage lp = new LoginPage(driver);
+        waitForSpinner(driver);
         lp.login("superman", "P@ssw0rd", "Admission");
         waitForSpinner(driver);
     }
 
-    private static void selectTemplate(String templateName, WebDriver driver) {
+    public static void selectTemplate(String templateName, WebDriver driver) {
         int formSelected = 0;
         List<WebElement> templateList = driver.findElements(By.cssSelector("section.concept-set-panel-left  li .concept-set-name"));
         if (templateList.size() > 0) {
@@ -129,6 +154,11 @@ public class SeleniumHelper {
             String value = fieldValueMap.get(fieldName);
             for (WebElement observationNode : observationNodes) {
                 String observLabel = observationNode.findElement(By.tagName("label")).getText().trim();
+                if (observLabel.isEmpty()) {
+                        waitForElement(driver, ExpectedConditions.textToBePresentInElementValue(By.tagName("label"), fieldName));
+                        //waitForElement(driver, ExpectedConditions.visibilityOfElementLocated(By.tagName("label").equals(fieldName)));
+                        observLabel = observationNode.findElement(By.tagName("label")).getText().trim();
+                }
                 if (observLabel.equals(fieldName)) {
                     fieldFound = true;
                     if (hasTag(observationNode, "input")) {
@@ -177,6 +207,8 @@ public class SeleniumHelper {
                         }
                     }
                 }
+                observationNodes = driver.findElements(By.cssSelector(".leaf-observation-node"));
+
             }
             if (!fieldFound) {
                 Assert.fail("Field " + fieldName + " not found or disabled");

@@ -1,11 +1,34 @@
 {
-  "Complications" :{
-    "Patient complication":"Acute Kidney Injury",
-    "Grade of complication":"Grade I - No treatment"
-  },
+
   "First Stage Validation":{
-    "Document(s) needed to be complete" : "No Documents",
-    "Specialty": "Plastic;Orthopedic",
-    "Outcome for 1st stage surgical validation" : "Valid"
+    "Type of medical information received" : "New medical file",
+    "Date Received": "04/04/2018",
+    "Is the medical file complete?": "Yes",
+    "Stage": 4,
+    "Date of presentation": "04/13/2018",
+    "Outcome for 1st stage surgical validation": "Valid",
+    "Priority": "Low",
+    "Outcome for 1st stage Anaesthesia validation": "Fits anaesthesia criteria",
+    "Name of Surgeon 1": "Dr. Ali Al-Ani",
+    "Name of Surgeon 2": "Dr. Ashraf Nabhan",
+    "Does the Patient need Surgical Final Validation?": "Yes",
+    "Name of Anaesthetist": "Dr. Abdulraoof Al-Ahmad"
+
+  },
+  "Surgeon Pre-Op Assessment and Treatment Plan": {
+    "Date of consultation": "04/27/2018",
+    "Site of injury": "Site, Elbow",
+    "Side of injury": "Right",
+    "Condition of soft tissue at presentation": "Good (healed scar)",
+    "Associated neural injury": "No",
+    "Associated vascular injury": "Yes",
+    "Is patient for surgery": "No",
+    "Initial general plan": "Needs Physio / Other consultation",
+    "Surgical objective": "Repair anatomy",
+    "Frequency of Operations": "One Operation",
+    "Sites (donor areas excluded)": "All objectives one site",
+    "Estimated length of stay": "Less than 30 days",
+    "Does the patient need further admissions": "No",
+    "Need consultations": "Orthopedic"
   }
 }

@@ -19,3 +19,4 @@ temp/
 temp2/
 temp3/
 .DS_Store
+*.patch

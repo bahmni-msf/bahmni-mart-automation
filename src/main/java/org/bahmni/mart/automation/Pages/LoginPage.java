@@ -10,7 +10,8 @@ import org.openqa.selenium.support.ui.Select;
 public class LoginPage {
 
     private WebDriver driver;
-    private String PAGE_URL="https://qa-reporting.ehealthunit.org/bahmni/home/index.html";
+    private String PAGE_URL= "https://qa-reporting.ehealthunit.org/bahmni/home/index.html";
+    //private String PAGE_URL= "https://www.facebook.com";
 
     @FindBy(how= How.CSS, using = "#username")
     public WebElement txtUserName;

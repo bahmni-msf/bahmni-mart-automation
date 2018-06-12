@@ -6,10 +6,12 @@
         "program_id",
         "program_name",
         "program_description",
-        "creator",
+        "creator_id",
+        "creator_name",
         "date_created",
         "date_changed",
-        "changed_by"
+        "changed_by_id",
+        "changed_by_name"
       ]
     },
     {
@@ -23,20 +25,22 @@
     {
       "tableName": "patient_program_data",
       "columns": [
+        "age_during_completion",
+        "age_during_enrollment",
         "patient_id",
-        "encounter_id",
         "program_id",
-        "episode_id",
         "patient_program_id",
         "date_enrolled",
         "date_completed",
         "location_id",
         "location_name",
         "program_outcome",
-        "creator",
+        "creator_id",
+        "creator_name",
         "date_created",
         "date_changed",
-        "changed_by"
+        "changed_by_id",
+        "changed_by_name"
       ]
     },
     {
@@ -51,10 +55,12 @@
         "state_name",
         "start_date",
         "end_date",
-        "creator",
+        "creator_id",
+        "creator_name",
         "date_created",
         "date_changed",
-        "changed_by"
+        "changed_by_id",
+        "changed_by_name"
       ]
     },
     {
@@ -74,10 +80,12 @@
         "program_workflow_name",
         "initial",
         "terminal",
-        "creator",
+        "creator_id",
+        "creator_name",
         "date_created",
         "date_changed",
-        "changed_by"
+        "changed_by_id",
+        "changed_by_name"
       ]
     },
     {
@@ -87,13 +95,15 @@
         "person_name_id",
         "preferred",
         "gender",
+        "age_group",
         "birthdate",
         "birthtime",
         "birthdate_estimated",
         "dead",
         "death_date",
         "deathdate_estimated",
-        "cause_of_death"
+        "cause_of_death",
+        "age"
       ]
     },
     {
@@ -175,7 +185,12 @@
         "additional_instructions",
         "dispense",
         "encounter_id",
-        "orderer"
+        "encounter_type_id",
+        "encounter_type_name",
+        "orderer_id",
+        "orderer_name",
+        "visit_id",
+        "visit_type"
       ]
     },
     {
@@ -257,18 +272,13 @@
         "view_privilege",
         "location_name",
         "form_id",
-        "encounter_datetime"
-      ]
-    },
-    {
-      "tableName": "encounter_provider_and_role",
-      "columns": [
-        "encounter_provider_id",
-        "encounter_id",
         "provider_id",
-        "encounter_role_id",
+        "provider_name",
+        "episode_id",
+        "encounter_datetime",
+        "encounter_role_description",
         "encounter_role_name",
-        "encounter_role_description"
+        "encounter_role_id"
       ]
     },
     {
@@ -383,6 +393,7 @@
         "encounter_id",
         "encounter_datetime",
         "visit_id",
+        "location",
         "visit_type"
       ]
     },
@@ -430,31 +441,17 @@
       "tableName": "person_attributes",
       "columns": [
         "person_id",
-        "campComments",
         "campDistrict",
         "campVillage",
         "caretakerDob",
-        "caretakerEmail",
-        "caretakerFacebook",
         "caretakerGender",
         "caretakerNameArabic",
         "caretakerNameEnglish",
         "caretakerNationality",
-        "caretakerPhoneNumber1",
-        "caretakerPhoneNumber2",
-        "caretakerViber",
-        "caretakerWhatsapp",
         "dateofArrival",
-        "emailAddress",
         "emergencyContactName",
         "emergencyContactNumber",
         "expectedDateofArrival",
-        "facebook",
-        "id1DateOfExpiry",
-        "id2DateOfExpiry",
-        "id2DocNumber",
-        "id2Document",
-        "id3Document",
         "isCareTakerRequired",
         "legalRepalsoCaretaker",
         "legalRepDob",
@@ -467,14 +464,10 @@
         "nationality1",
         "nationality2",
         "occupation",
-        "phoneNumber1",
-        "phoneNumber2",
-        "phoneNumber3",
         "relationWithPatient",
+        "orkut",
         "spokenLanguages",
-        "statusofOfficialIDdocuments",
-        "viber",
-        "whatsapp"
+        "statusofOfficialIDdocuments"
       ]
     },
     {
@@ -513,7 +506,7 @@
         "date_created",
         "date_changed",
         "creator_name",
-        "change_by"
+        "changed_by"
       ]
     },
     {

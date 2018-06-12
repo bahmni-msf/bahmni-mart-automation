@@ -6,11 +6,23 @@
         "id_bacteriology_concept_set",
         "patient_id",
         "encounter_id",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "specimen_collection_date",
         "specimen_sample_source",
+        "specimen_id",
+        "specimen_sample_source_noncoded",
         "microbiology_volume_of_collected_blood",
+        "microbiology_macroscopic_appearance",
+        "microbiology_specimen_description",
+        "microbiology_crp",
         "microbiology_date_of_last_crp",
         "microbiology_growth",
+        "microbiology_comments",
+        "microbiology_comments_for_intermediate_identification",
         "microbiology_type_of_identification"
       ]
     },
@@ -21,7 +33,12 @@
         "patient_id",
         "encounter_id",
         "id_bacteriology_concept_set",
-        "microbiology_intermediate_identification"
+        "microbiology_intermediate_identification",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name"
       ]
     },
     {
@@ -148,7 +165,13 @@
         "cns_fusidic_acid",
         "cns_rifampicin",
         "cns_vancomycin_mic",
-        "microbiology_are_there_any_alerts"
+        "microbiology_are_there_any_alerts",
+        "location_id",
+        "location_name",
+        "microbiology_comments",
+        "obs_datetime",
+        "program_id",
+        "program_name"
       ]
     },
     {
@@ -158,7 +181,13 @@
         "patient_id",
         "encounter_id",
         "id_bacteriology_final_identification",
-        "alerts_coded"
+        "alerts_coded",
+        "alerts_non_coded",
+        "location_id",
+        "location_name",
+        "obs_datetime",
+        "program_id",
+        "program_name"
       ]
     },
     {
@@ -172,7 +201,12 @@
         "mh_date_of_injury",
         "mh_cause_of_injury",
         "mh_patient_general_condition",
-        "mh_if_caretaker_is_needed_why"
+        "mh_if_caretaker_is_needed_why",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name"
       ]
     },
     {
@@ -195,7 +229,12 @@
         "fstg_medical_file_to_be_submitted_again_by",
         "fstg_refused_reason",
         "fstg_outcomes_for_1st_stage_anaesthesia_validation",
-        "fstg_name_s_of_anaesthetist"
+        "fstg_name_s_of_anaesthetist",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name"
       ]
     },
     {
@@ -218,7 +257,12 @@
         "fup_priority",
         "fup_name_s_of_surgeon_1",
         "fup_name_s_of_surgeon_2",
-        "fup_does_the_patient_need_surgical_final_validation"
+        "fup_does_the_patient_need_surgical_final_validation",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name"
       ]
     },
     {
@@ -232,7 +276,12 @@
         "fv_does_the_patient_need_accommodation",
         "fv_type_of_admission_recommended",
         "fv_name_s_of_surgeon_1",
-        "fv_name_s_of_surgeon_2"
+        "fv_name_s_of_surgeon_2",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name"
       ]
     },
     {
@@ -252,6 +301,11 @@
         "vs_diastolic_blood_pressure",
         "vs_blood_oxygen_saturation",
         "vs_fasting",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "vs_random"
       ]
     },
@@ -270,6 +324,11 @@
         "he_duration_of_smoking_in_years",
         "he_drug_and_alcohol_use",
         "he_nutritional_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "he_personal_hygiene"
       ]
     },
@@ -289,6 +348,11 @@
         "aia_asa_score",
         "aia_does_the_patient_need_fiberoptic",
         "aia_outcome_of_anaesthesia_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "aia_i_discussed_the_risks_and_benefits_of_anaesthesia_and_answered_all_questions"
       ]
     },
@@ -314,6 +378,11 @@
         "piad_ptsd_score",
         "piad_psyca_3_6_child",
         "piad_sdq_p7_10",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "piad_sdq_s11_17"
       ]
     },
@@ -336,6 +405,11 @@
         "md_cm_of_bone_loss",
         "md_united_fracture",
         "md_shortening",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_cm_of_shortening"
       ]
     },
@@ -358,6 +432,11 @@
         "sap_sites_donor_areas_excluded",
         "sap_spacing_between_surgeries",
         "sap_estimated_length_of_stay",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sap_does_the_patient_need_further_admissions"
       ]
     },
@@ -366,6 +445,11 @@
       "conceptsList": [
         "id_physical_examination",
         "patient_id",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "encounter_id"
       ]
     },
@@ -374,6 +458,11 @@
       "conceptsList": [
         "id_obs_surgical_diagnoses",
         "patient_id",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "encounter_id"
       ]
     },
@@ -382,6 +471,11 @@
       "conceptsList": [
         "id_obs_medical_diagnoses",
         "patient_id",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "encounter_id"
       ]
     },
@@ -393,8 +487,14 @@
         "encounter_id",
         "ana_date_recorded",
         "ana_reason_for_admission",
+        "ana_nutritional_assessment",
         "ana_patient_mood",
         "ana_does_the_patient_have_suicidal_or_depressive_thoughts",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ana_number_of_wounds"
       ]
     },
@@ -412,6 +512,11 @@
         "onn_diastolic_blood_pressure",
         "onn_number_of_wounds",
         "onn_does_the_patient_have_a_dressing",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "onn_does_the_patient_have_a_tissue_expander"
       ]
     },
@@ -438,6 +543,11 @@
         "wwn_rbs_after_meal",
         "wwn_fbs",
         "wwn_insulin_given",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "wwn_how_much_insulin_given"
       ]
     },
@@ -446,6 +556,11 @@
       "conceptsList": [
         "id_complications_set",
         "patient_id",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "encounter_id"
       ]
     },
@@ -462,6 +577,11 @@
         "ppn_drainage",
         "ppn_frequency_of_dressing",
         "ppn_assessment_of_patient",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ppn_surgeon_informed_of_patient_assessment"
       ]
     },
@@ -483,6 +603,11 @@
         "pow_nausea",
         "pow_vomiting",
         "pow_urine",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pow_does_the_patient_have_a_drain"
       ]
     },
@@ -507,6 +632,11 @@
         "sfp_mlo_visit_at",
         "sfp_x_ray_at",
         "sfp_video_after",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sfp_photo_after"
       ]
     },
@@ -522,6 +652,11 @@
         "or_specimen_sent_to_lab",
         "or_estimated_blood_loss",
         "or_blood_transfusion",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "or_number_of_units"
       ]
     },
@@ -537,6 +672,11 @@
         "v_respiratory_rate",
         "v_systolic_blood_pressure",
         "v_diastolic_blood_pressure",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "os_does_the_patient_have_a_drain"
       ]
     },
@@ -550,6 +690,11 @@
         "apn_anaesthesia_end_time",
         "apn_blood_transfusion",
         "apn_hemoglobin_hb",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "apn_blood_sugar"
       ]
     },
@@ -638,6 +783,11 @@
         "lla_rolling_over_in_bed",
         "lla_lefi_total_score",
         "lla_referral_suggested",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_network_physio_suggested"
       ]
     },
@@ -714,6 +864,11 @@
         "ula_total_raw_score",
         "ula_final_score",
         "ula_referral_suggested",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_network_physio_suggested"
       ]
     },
@@ -753,6 +908,11 @@
         "mpa_social_wellbeing_score",
         "mpa_total_score_fdi",
         "mpa_referral_suggested",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "mpa_network_physio_suggested"
       ]
     },
@@ -776,6 +936,11 @@
         "pnf_light_brushing",
         "pnf_patient_score",
         "pnf_side_of_pain",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pnf_is_the_pain"
       ]
     },
@@ -788,6 +953,11 @@
         "mdof_date_recorded",
         "mdof_plan",
         "mdof_condition_of_patient_at_discharge_trm",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "mdof_discharge_medication"
       ]
     },
@@ -797,6 +967,11 @@
         "id_administrative_note",
         "patient_id",
         "encounter_id",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "an_date_recorded"
       ]
     },
@@ -807,6 +982,11 @@
         "patient_id",
         "encounter_id",
         "id_first_stage_validation",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "fstg_specialty_determined_by_mlo"
       ]
     },
@@ -817,6 +997,11 @@
         "patient_id",
         "encounter_id",
         "id_follow_up_validation",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "fup_type_of_medical_investigations_requested"
       ]
     },
@@ -827,6 +1012,11 @@
         "patient_id",
         "encounter_id",
         "id_fv_final_validation",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "fv_outcomes_fv"
       ]
     },
@@ -837,6 +1027,11 @@
         "patient_id",
         "encounter_id",
         "id_health_education",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "he_external_devices_present"
       ]
     },
@@ -847,6 +1042,11 @@
         "patient_id",
         "encounter_id",
         "id_initial_anesthesia_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "aia_past_medical_history"
       ]
     },
@@ -857,6 +1057,11 @@
         "patient_id",
         "encounter_id",
         "id_initial_anesthesia_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "aia_previous_anaesthesia_history"
       ]
     },
@@ -867,6 +1072,11 @@
         "patient_id",
         "encounter_id",
         "id_initial_anesthesia_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "aia_adverse_reaction_to_anaesthesia"
       ]
     },
@@ -877,6 +1087,11 @@
         "patient_id",
         "encounter_id",
         "id_initial_anesthesia_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "aia_planned_anaesthesia_technique"
       ]
     },
@@ -887,6 +1102,11 @@
         "patient_id",
         "encounter_id",
         "id_psychology_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pia_needed_mental_health_support"
       ]
     },
@@ -897,6 +1117,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_medical_history"
       ]
     },
@@ -907,6 +1132,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_history_of_allergy"
       ]
     },
@@ -917,6 +1147,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_date_of_last_dose"
       ]
     },
@@ -928,6 +1163,11 @@
         "encounter_id",
         "id_md_initial_assessment",
         "md_side_of_procedure",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_date_of_procedure"
       ]
     },
@@ -938,6 +1178,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_type_of_previous_fixation"
       ]
     },
@@ -948,6 +1193,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_type_of_internal_fixation"
       ]
     },
@@ -958,6 +1208,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_review_of_systems_general"
       ]
     },
@@ -968,6 +1223,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_review_of_systems_cardiopulmonary"
       ]
     },
@@ -978,6 +1238,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_review_of_systems_gastrointestinal"
       ]
     },
@@ -988,6 +1253,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_review_of_systems_genitourinary"
       ]
     },
@@ -998,6 +1268,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_review_of_systems_central_nervous_system"
       ]
     },
@@ -1008,6 +1283,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_review_of_systems_heent"
       ]
     },
@@ -1018,6 +1298,11 @@
         "patient_id",
         "encounter_id",
         "id_md_initial_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_review_of_systems_musculoskeletal"
       ]
     },
@@ -1028,6 +1313,11 @@
         "patient_id",
         "encounter_id",
         "id_md_surgical_procedures_outside_amh",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_procedures_performed_outside_amh"
       ]
     },
@@ -1038,6 +1328,11 @@
         "patient_id",
         "encounter_id",
         "id_md_surgical_procedures_outside_amh",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "md_site_of_procedure"
       ]
     },
@@ -1050,6 +1345,11 @@
         "id_surgeon_pre_op_assessment_and_treatment_plan",
         "sap_site_of_injury",
         "sap_side_of_injury",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sap_condition_of_soft_tissue_at_presentation"
       ]
     },
@@ -1060,6 +1360,11 @@
         "patient_id",
         "encounter_id",
         "id_surgeon_pre_op_assessment_and_treatment_plan",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sap_side_of_surgical_procedure"
       ]
     },
@@ -1069,6 +1374,11 @@
         "id_sap_surgical_objectives_for_patient",
         "patient_id",
         "encounter_id",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "id_surgeon_pre_op_assessment_and_treatment_plan"
       ]
     },
@@ -1079,6 +1389,11 @@
         "patient_id",
         "encounter_id",
         "id_surgeon_pre_op_assessment_and_treatment_plan",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sap_need_consultations"
       ]
     },
@@ -1089,6 +1404,11 @@
         "patient_id",
         "encounter_id",
         "id_sap_planned_surgical_procedures_for_next_ot",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sap_planned_procedure_surgical"
       ]
     },
@@ -1099,6 +1419,11 @@
         "patient_id",
         "encounter_id",
         "id_sap_planned_surgical_procedures_for_next_ot",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sap_site_of_surgical_procedure"
       ]
     },
@@ -1109,6 +1434,11 @@
         "patient_id",
         "encounter_id",
         "id_sap_surgical_objectives_for_patient",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sap_surgical_objective"
       ]
     },
@@ -1119,6 +1449,11 @@
         "patient_id",
         "encounter_id",
         "id_obs_surgical_diagnoses",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "dia_side"
       ]
     },
@@ -1129,6 +1464,11 @@
         "patient_id",
         "encounter_id",
         "id_surgical_diagnosis_section",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "dia_surgical_diagnosis_coded"
       ]
     },
@@ -1139,6 +1479,11 @@
         "patient_id",
         "encounter_id",
         "id_surgical_diagnosis_section",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "dia_site"
       ]
     },
@@ -1149,6 +1494,11 @@
         "patient_id",
         "encounter_id",
         "id_obs_medical_diagnoses",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "dia_medical_diagnosis_coded"
       ]
     },
@@ -1160,6 +1510,11 @@
         "encounter_id",
         "id_surgical_ward_admission_nursing_assessment",
         "ana_pain_severity",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ana_side_of_pain"
       ]
     },
@@ -1170,6 +1525,11 @@
         "patient_id",
         "encounter_id",
         "id_surgical_ward_admission_nursing_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ana_site_of_wound"
       ]
     },
@@ -1180,6 +1540,11 @@
         "patient_id",
         "encounter_id",
         "id_surgical_ward_admission_nursing_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ana_nutritional_assessment"
       ]
     },
@@ -1190,6 +1555,11 @@
         "patient_id",
         "encounter_id",
         "id_surgical_ward_admission_nursing_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ana_orientation_of_the_patient"
       ]
     },
@@ -1200,6 +1570,11 @@
         "patient_id",
         "encounter_id",
         "id_ana_pain_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ana_site_of_pain"
       ]
     },
@@ -1211,6 +1586,11 @@
         "encounter_id",
         "id_opd_nursing_note",
         "onn_pain_severity",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "onn_side_of_pain"
       ]
     },
@@ -1221,6 +1601,11 @@
         "patient_id",
         "encounter_id",
         "id_opd_nursing_note",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "onn_site"
       ]
     },
@@ -1234,6 +1619,11 @@
         "onn_was_the_dressing_changed",
         "onn_side_of_dressing",
         "onn_site_of_dressing",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "onn_description_of_wound"
       ]
     },
@@ -1247,6 +1637,11 @@
         "onn_site_of_tissue_expander",
         "onn_quantity_injected",
         "onn_quantity_withdrawn",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "onn_total_volume_in_tissue_expander"
       ]
     },
@@ -1257,6 +1652,11 @@
         "patient_id",
         "encounter_id",
         "id_onn_pain_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "onn_site_of_pain"
       ]
     },
@@ -1268,6 +1668,11 @@
         "encounter_id",
         "id_ward_nursing_note",
         "wwn_pain_severity",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "wwn_side_of_pain"
       ]
     },
@@ -1281,6 +1686,11 @@
         "wwn_was_the_dressing_changed",
         "wwn_side_of_dressing",
         "wwn_site_of_dressing",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "wwn_description_of_wound"
       ]
     },
@@ -1294,6 +1704,11 @@
         "wwn_site_of_tissue_expander",
         "wwn_quantity_injected",
         "wwn_quantity_withdrawn",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "wwn_total_volume_in_tissue_expander"
       ]
     },
@@ -1304,6 +1719,11 @@
         "patient_id",
         "encounter_id",
         "id_wwn_pain_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "wwn_site_of_pain"
       ]
     },
@@ -1322,6 +1742,11 @@
         "cc_pressure_ulcer_description",
         "cc_grade_of_complication",
         "cc_outcome_of_complication",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "cc_end_date_of_complication"
       ]
     },
@@ -1332,6 +1757,11 @@
         "patient_id",
         "encounter_id",
         "id_cc_complications",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "cc_anaesthetic_complication_in_ot_description"
       ]
     },
@@ -1342,6 +1772,11 @@
         "patient_id",
         "encounter_id",
         "id_cc_complications",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "cc_antibiotic_adverse_reaction_description"
       ]
     },
@@ -1352,6 +1787,11 @@
         "patient_id",
         "encounter_id",
         "id_physician_progress_note_ward",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ppn_patient_complaints"
       ]
     },
@@ -1366,6 +1806,11 @@
         "ppn_wound_status_1",
         "ppn_removal_of_clips",
         "ppn_wound_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ppn_description_of_wound"
       ]
     },
@@ -1376,6 +1821,11 @@
         "patient_id",
         "encounter_id",
         "id_physician_progress_note_ward",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ppn_active_issues_of_patient"
       ]
     },
@@ -1386,6 +1836,11 @@
         "patient_id",
         "encounter_id",
         "id_physician_progress_note_ward",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ppn_surgical_ward_patient_care_plan"
       ]
     },
@@ -1397,6 +1852,11 @@
         "encounter_id",
         "id_physician_progress_note_ward",
         "ppn_specify_side_of_drain_removal",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ppn_specify_site_of_drain_removal"
       ]
     },
@@ -1407,6 +1867,11 @@
         "patient_id",
         "encounter_id",
         "id_ppn_assessment_of_wound",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ppn_site_of_wound"
       ]
     },
@@ -1417,6 +1882,11 @@
         "patient_id",
         "encounter_id",
         "id_ppn_assessment_of_wound",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ppn_wound_status_2"
       ]
     },
@@ -1428,6 +1898,11 @@
         "encounter_id",
         "id_post_op_ward_monitoring",
         "pow_pain_severity",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pow_side_of_pain"
       ]
     },
@@ -1440,6 +1915,11 @@
         "id_post_op_ward_monitoring",
         "pow_side_of_dressing",
         "pow_site_of_dressing",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pow_description_of_wound"
       ]
     },
@@ -1452,6 +1932,11 @@
         "id_post_op_ward_monitoring",
         "pow_side_of_drain",
         "pow_site_of_drain",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pow_drainage"
       ]
     },
@@ -1462,6 +1947,11 @@
         "patient_id",
         "encounter_id",
         "id_pow_pain_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pow_site_of_pain"
       ]
     },
@@ -1472,6 +1962,11 @@
         "patient_id",
         "encounter_id",
         "id_surgeon_follow_up",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sfp_type_of_complication"
       ]
     },
@@ -1482,6 +1977,11 @@
         "patient_id",
         "encounter_id",
         "id_surgeon_follow_up",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sfp_side_of_surgical_procedure"
       ]
     },
@@ -1492,6 +1992,11 @@
         "patient_id",
         "encounter_id",
         "id_fp_planned_surgical_procedures_for_next_ot",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sfp_planned_procedure_surgical"
       ]
     },
@@ -1502,6 +2007,11 @@
         "patient_id",
         "encounter_id",
         "id_fp_planned_surgical_procedures_for_next_ot",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "sfp_site_of_surgical_procedure"
       ]
     },
@@ -1512,6 +2022,11 @@
         "patient_id",
         "encounter_id",
         "id_operative_report",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "or_surgeon"
       ]
     },
@@ -1522,6 +2037,11 @@
         "patient_id",
         "encounter_id",
         "id_operative_report",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "or_anaesthetist"
       ]
     },
@@ -1532,6 +2052,11 @@
         "patient_id",
         "encounter_id",
         "id_operative_report",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "or_type_of_anaesthesia"
       ]
     },
@@ -1543,6 +2068,11 @@
         "encounter_id",
         "id_operative_report",
         "or_size_of_tissue_expander",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "or_side_of_operation"
       ]
     },
@@ -1555,6 +2085,11 @@
         "id_operative_report",
         "or_side_of_drain",
         "or_site_of_drain",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "or_type_of_drain_inserted"
       ]
     },
@@ -1565,6 +2100,11 @@
         "patient_id",
         "encounter_id",
         "id_or_operations_performed_in_the_ot",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "or_operation_performed_coded"
       ]
     },
@@ -1575,6 +2115,11 @@
         "patient_id",
         "encounter_id",
         "id_or_operations_performed_in_the_ot",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "or_site_of_operation"
       ]
     },
@@ -1586,6 +2131,11 @@
         "encounter_id",
         "id_observation_sheet",
         "os_pain_severity",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "os_side_of_pain"
       ]
     },
@@ -1599,6 +2149,11 @@
         "os_side_of_drain",
         "os_site_of_drain",
         "os_drainage",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "os_total_quantity_evacuated_from_the_drain"
       ]
     },
@@ -1609,6 +2164,11 @@
         "patient_id",
         "encounter_id",
         "id_os_pain_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "os_site_of_pain"
       ]
     },
@@ -1619,6 +2179,11 @@
         "patient_id",
         "encounter_id",
         "id_post_operative_anaesthesia_note",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "apn_type_of_anaesthesia_administered"
       ]
     },
@@ -1629,6 +2194,11 @@
         "patient_id",
         "encounter_id",
         "id_post_operative_anaesthesia_note",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "apn_complication_of_anaesthesia"
       ]
     },
@@ -1640,6 +2210,11 @@
         "encounter_id",
         "id_post_operative_anaesthesia_note",
         "apn_blood_product_intra_operatively",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "apn_number_of_units_given"
       ]
     },
@@ -1650,6 +2225,11 @@
         "patient_id",
         "encounter_id",
         "id_post_operative_anaesthesia_note",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "apn_intra_operative_transfusion_related_reaction"
       ]
     },
@@ -1660,6 +2240,11 @@
         "patient_id",
         "encounter_id",
         "id_post_operative_anaesthesia_note",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "apn_devices_present"
       ]
     },
@@ -1670,6 +2255,11 @@
         "patient_id",
         "encounter_id",
         "id_lower_limb_physiotherapy_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_type_of_assistive_device_or_orthosis"
       ]
     },
@@ -1682,6 +2272,11 @@
         "id_lower_limb_physiotherapy_assessment",
         "lla_type_of_amputation",
         "lla_side_of_amputation",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_is_the_patient_using_a_prostheses"
       ]
     },
@@ -1693,6 +2288,11 @@
         "encounter_id",
         "id_lower_limb_physiotherapy_assessment",
         "lla_pain_severity",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_side_of_pain"
       ]
     },
@@ -1703,6 +2303,11 @@
         "patient_id",
         "encounter_id",
         "id_lower_limb_physiotherapy_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_summary_neurological_examination_sensation"
       ]
     },
@@ -1713,6 +2318,11 @@
         "patient_id",
         "encounter_id",
         "id_lower_limb_physiotherapy_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_step_length_and_height"
       ]
     },
@@ -1723,6 +2333,11 @@
         "patient_id",
         "encounter_id",
         "id_lower_limb_physiotherapy_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_foot_clearance"
       ]
     },
@@ -1733,6 +2348,11 @@
         "patient_id",
         "encounter_id",
         "id_lla_level_of_amputation",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_cm"
       ]
     },
@@ -1743,6 +2363,11 @@
         "patient_id",
         "encounter_id",
         "id_lla_pain_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "lla_site_of_pain"
       ]
     },
@@ -1753,6 +2378,11 @@
         "patient_id",
         "encounter_id",
         "id_upper_limb_physiotherapy_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_type_of_assistive_device_or_orthosis"
       ]
     },
@@ -1765,6 +2395,11 @@
         "id_upper_limb_physiotherapy_assessment",
         "ula_type_of_amputation",
         "ula_side_of_amputation",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_is_the_patient_using_a_prostheses"
       ]
     },
@@ -1776,6 +2411,11 @@
         "encounter_id",
         "id_upper_limb_physiotherapy_assessment",
         "ula_pain_severity",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_side_of_pain"
       ]
     },
@@ -1786,6 +2426,11 @@
         "patient_id",
         "encounter_id",
         "id_upper_limb_physiotherapy_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_nail"
       ]
     },
@@ -1798,6 +2443,11 @@
         "id_upper_limb_physiotherapy_assessment",
         "ula_r_o_m_hand_and_finger_distance_tip_2nd_5th",
         "ula_r_o_m_hand_and_finger_distance_tip_thumb_2nd",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_side_of_assessment"
       ]
     },
@@ -1808,6 +2458,11 @@
         "patient_id",
         "encounter_id",
         "id_upper_limb_physiotherapy_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_summary_neurological_examination_sensation"
       ]
     },
@@ -1818,6 +2473,11 @@
         "patient_id",
         "encounter_id",
         "id_ula_level_of_amputation",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_cm"
       ]
     },
@@ -1828,6 +2488,11 @@
         "patient_id",
         "encounter_id",
         "id_ula_pain_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "ula_site_of_pain"
       ]
     },
@@ -1839,6 +2504,11 @@
         "encounter_id",
         "id_maxillofacial_physio_assessment",
         "mpa_pain_severity",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "mpa_side_of_pain"
       ]
     },
@@ -1849,6 +2519,11 @@
         "patient_id",
         "encounter_id",
         "id_maxillofacial_physio_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "mpa_summary_neurological_examination_sensation"
       ]
     },
@@ -1859,6 +2534,11 @@
         "patient_id",
         "encounter_id",
         "id_maxillofacial_physio_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "mpa_arom"
       ]
     },
@@ -1869,6 +2549,11 @@
         "patient_id",
         "encounter_id",
         "id_mpa_pain_assessment",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "mpa_site_of_pain"
       ]
     },
@@ -1879,6 +2564,11 @@
         "patient_id",
         "encounter_id",
         "id_pain_nurse_follow_up",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pnf_type_of_pain_experienced_by_the_patient"
       ]
     },
@@ -1889,6 +2579,11 @@
         "patient_id",
         "encounter_id",
         "id_pain_nurse_follow_up",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pnf_site_of_pain"
       ]
     },
@@ -1899,6 +2594,11 @@
         "patient_id",
         "encounter_id",
         "id_pain_nurse_follow_up",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pnf_pain_usually_occurs_with"
       ]
     },
@@ -1910,6 +2610,11 @@
         "encounter_id",
         "id_pain_nurse_follow_up",
         "pnf_side_of_dressing",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pnf_description_of_wound"
       ]
     },
@@ -1920,6 +2625,11 @@
         "patient_id",
         "encounter_id",
         "id_pnf_dressing",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "pnf_site_of_dressing"
       ]
     },
@@ -1930,6 +2640,11 @@
         "patient_id",
         "encounter_id",
         "id_medical_doctor_opd_follow_up",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "mdof_reason_for_visit"
       ]
     },
@@ -1940,6 +2655,11 @@
         "patient_id",
         "encounter_id",
         "id_medical_doctor_opd_follow_up",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "mdof_new_complaint_of_patient"
       ]
     },
@@ -1949,6 +2669,11 @@
         "id_mdof_discharge_medication_section",
         "patient_id",
         "encounter_id",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
         "id_medical_doctor_opd_follow_up"
       ]
     },
@@ -1960,6 +2685,12 @@
         "encounter_id",
         "coded_diagnosis",
         "diagnosis_certainty",
+        "obs_datetime",
+        "location_id",
+        "location_name",
+        "program_id",
+        "program_name",
+        "non_coded_diagnosis",
         "diagnosis_order"
       ]
     }

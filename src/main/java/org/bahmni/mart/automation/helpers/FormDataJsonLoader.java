@@ -6,13 +6,9 @@ import org.bahmni.mart.automation.models.FormData;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public class JsonLoader {
+public class FormDataJsonLoader {
 
     public static List<FormData> readFormDataFromJson()  {
         JsonObject json = null;
@@ -31,7 +27,7 @@ public class JsonLoader {
             formData.setFormName(formName);
             JsonObject formDataJson = json.getAsJsonObject(formName);
             Set<String> fields = formDataJson.keySet();
-            Map<String,String> fieldValues = new HashMap<>();
+            Map<String,String> fieldValues = new LinkedHashMap<>();
             for(String fieldName : fields){
                 fieldValues.put(fieldName, formDataJson.get(fieldName).getAsString());
             }

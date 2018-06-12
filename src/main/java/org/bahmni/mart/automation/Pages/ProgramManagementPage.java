@@ -20,6 +20,9 @@ public class ProgramManagementPage  {
     @FindBy(how = How.CSS, using = "select.ng-pristine")
     public WebElement program;
 
+    @FindBy(how = How.CSS, using = ".back-btn")
+    public WebElement backButton;
+
     @FindBy(how = How.CSS, using = ".fa-plus-square")
     public WebElement btnPlus;
 
@@ -71,6 +74,19 @@ public class ProgramManagementPage  {
         facility_name.sendKeys(facility);
         registration_id.sendKeys(registration);
         return this;
+    }
+
+    public void enrollToProgram(String programName, String startDate) {
+
+        btnPlus.click();
+        new Select(program).selectByVisibleText(programName);
+        start_date.sendKeys(startDate);
+        btnEnroll.click();
+
+    }
+
+    public void goToBackPage(){
+        backButton.click();
     }
 
 

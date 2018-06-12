@@ -1,0 +1,14 @@
+{
+  "Patient1":
+  {
+    "First Name": "ObsAutomation",
+    "Last Name": "Test",
+    "gender": "Male",
+    "age Years": "55",
+    "governorate": "Amman",
+    "country": "Jordan",
+    "Phone Number": "9999999999",
+    "Nationality": "Jordanian",
+    "Spoken Languages": "Arabic"
+  }
+}
