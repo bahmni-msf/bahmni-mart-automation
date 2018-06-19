@@ -1,5 +1,6 @@
 package org.bahmni.mart.automation;
 
+import org.bahmni.mart.automation.helpers.RestHelper;
 import org.bahmni.mart.automation.helpers.Utils;
 import org.bahmni.mart.automation.models.ObsForm;
 import org.bahmni.mart.automation.readers.ObsJsonReader;
@@ -9,7 +10,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,29 +58,68 @@ public class ObsSchemaValidationTest {
     }
 
     @Test
-    public void validateAllObsFormsSchema() {
+    public void validateAllObsFormsSchemaWithMultiSelect() {
+
+        validateAllObsFormsSchema(true);
+
+    }
+
+    @Test
+    public void validateAllObsFormsSchemaWithoutMultiSelect(){
+
+        validateAllObsFormsSchema(false);
+    }
+
+
+    public void validateAllObsFormsSchema(boolean isMultiSelectEnabled) {
 
         ObsJsonReader obsjsonreader = new ObsJsonReader();
         List<ObsForm> obsForms = null;
         String formName = null;
         ArrayList<String> formConcepts = null;
         ArrayList<String> tableColumns = null;
+        String restURL;
+        String jobExecutionId;
         int formCount = 0;
 
         try {
 
-            obsForms = obsjsonreader.getObsFormsfromJson();
-            System.out.println("Validating Schema for Obs forms. Total forms count: " + obsForms.size());
-            for (ObsForm form : obsForms) {
-                formName = form.getFormName();
-                formConcepts = obsjsonreader.getObsFormConceptList(formName);
-                tableColumns = Utils.getTableColumns(postgresConnection, formName);
-                Collections.sort(formConcepts);
-                Collections.sort(tableColumns);
+            restURL = new Utils().getRestURL();
 
-                assertEquals("The schema validation for Obs Form: " + formName + " failed." + "FormConcepts: " + formConcepts + " " + "Columns from mart: " + tableColumns, formConcepts, tableColumns);
+            if (isMultiSelectEnabled) {
+
+                //jobExecutionId = RestHelper.startBatchJob(restURL);
+                obsForms = obsjsonreader.getObsFormsfromJson(true);
+                System.out.println("Validating Schema for Obs forms with multi select. Total forms count: " + obsForms.size());
             }
-        } catch (FileNotFoundException | SQLException e) {
+            else {
+
+                jobExecutionId = RestHelper.startBatchJob(restURL, false);
+                obsForms = obsjsonreader.getObsFormsfromJson(false);
+                System.out.println("Validating Schema for Obs forms without multiselect. Total forms count: " + obsForms.size());
+            }
+            //if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
+            if ( true ) {
+
+                for (ObsForm form : obsForms) {
+                    formName = form.getFormName();
+                    formCount += 1;
+                    if (isMultiSelectEnabled) {
+                        formConcepts = obsjsonreader.getObsFormConceptList(formName, true);
+                    }
+                    else {
+                        formConcepts = obsjsonreader.getObsFormConceptList(formName, false);
+                    }
+                    tableColumns = Utils.getTableColumns(postgresConnection, formName);
+                    System.out.println("Validating schema for table: " + formName);
+                    Collections.sort(formConcepts);
+                    Collections.sort(tableColumns);
+
+                    assertEquals("The schema validation for Obs Form: " + formName + " failed." + "FormConcepts: " + formConcepts + " " + "Columns from mart: " + tableColumns, formConcepts, tableColumns);
+                }
+                System.out.println("Validated total forms: " + formCount);
+            }
+        } catch ( Exception e) {
 
             e.printStackTrace();
         }

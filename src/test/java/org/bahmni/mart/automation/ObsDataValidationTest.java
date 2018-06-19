@@ -55,10 +55,10 @@ public class ObsDataValidationTest {
                 postgresConnection.close();
             }
 
-//            if (driver != null) {
-//                driver.close();
-//                driver.quit();
-//            }
+            if (driver != null) {
+                driver.close();
+                driver.quit();
+            }
 
         }
 
@@ -74,9 +74,21 @@ public class ObsDataValidationTest {
 
         }
 
+        @Test
+        public void validateObsFormsWithoutMultiSelect(){
+
+            validateObsFormsData(false);
+
+        }
 
         @Test
-        public void validateObsFormsData() {
+        public void validateObsFormsWithMultiSelectAndAddMore(){
+
+            validateObsFormsData(true);
+        }
+
+
+        public void validateObsFormsData(boolean isMultiSelectEnabled) {
 
             List<FormData> formDataList = FormDataJsonLoader.readFormDataFromJson();
             String formName;
@@ -124,7 +136,13 @@ public class ObsDataValidationTest {
                 }
 
                 // Once data is filled in Obs forms above, run mart using Rest and poll till job is completed successfully
-                jobExecutionId = RestHelper.startBatchJob(restURL);
+
+                if (isMultiSelectEnabled) {
+                    jobExecutionId = RestHelper.startBatchJob(restURL);
+                }
+                else {
+                    jobExecutionId = RestHelper.startBatchJob(restURL, false);
+                }
                 if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
 
                     System.out.println("mart Job is executed successfully");

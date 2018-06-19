@@ -15,29 +15,36 @@ public class ObsJsonReader {
 
 
 
-    public AllObsForms readJson() {
+    public AllObsForms readJson(boolean readForMultiSelect) {
 
         Gson obsformsjsonobj = new Gson();
-        JsonReader jr = new JsonReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("configurations/ObsFormsOthersfinal.json")));
+        JsonReader jr;
+
+        if (readForMultiSelect) {
+            jr = new JsonReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("configurations/ObsFormsWithMultiSelect.json")));
+        }
+        else {
+            jr = new JsonReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("configurations/ObsFormsWithoutMultiSelect.json")));
+        }
         AllObsForms inputdatajson = obsformsjsonobj.fromJson(jr, AllObsForms.class);
 
         return inputdatajson;
 
     }
 
-    public List<ObsForm> getObsFormsfromJson () throws FileNotFoundException {
+    public List<ObsForm> getObsFormsfromJson (boolean readForMultiSelect) throws FileNotFoundException {
 
-        AllObsForms allformsjson = readJson();
+        AllObsForms allformsjson = readJson(readForMultiSelect);
         List<ObsForm> obsFormsJsons = allformsjson.getForms();
 
         return obsFormsJsons;
     }
 
-    public ArrayList<String> getObsFormConceptList(String form_name) throws FileNotFoundException{
+    public ArrayList<String> getObsFormConceptList(String form_name, boolean readForMultiSelect) throws FileNotFoundException{
 
         ArrayList<String> concetpsList = new ArrayList<String>();
 
-        AllObsForms allformsjson = readJson();
+        AllObsForms allformsjson = readJson(readForMultiSelect);
 
         for (ObsForm form: allformsjson.getForms()) {
 
@@ -65,7 +72,7 @@ public class ObsJsonReader {
 
     public static void main (String args[]) throws FileNotFoundException {
         ObsJsonReader obsjr = new ObsJsonReader();
-        obsjr.readJson();
+        obsjr.readJson(true);
     }
 
 }

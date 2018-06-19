@@ -12,10 +12,25 @@ public class RestHelper {
     private static int INTERVAL = 10000;
 
     public static String startBatchJob(String hostUrl) throws UnirestException {
-        return Unirest.post(getTaskExecutionUrl(hostUrl))
-                .queryString("name", "create-bahmni-mart")
-                .asString().getBody();
+        return startBatchJob(hostUrl, true);
     }
+
+    public static String startBatchJob(String hostUrl , boolean isMultiselectEnabled) throws UnirestException {
+        
+        if (isMultiselectEnabled) {
+            return Unirest.post(getTaskExecutionUrl(hostUrl))
+                    .queryString("name", "create-bahmni-mart")
+                    .asString().getBody();
+        }
+        else {
+            return Unirest.post(getTaskExecutionUrl(hostUrl))
+                    .queryString("name", "create-bahmni-mart")
+                    .queryString("arguments", "--spring.profiles.active=test,--spring.profiles.active=docker")
+                    .asString().getBody();
+        }
+    }
+    
+    //public static String startBatchJobwithoutmultiselect(String hostUrl)
 
     private static String getTaskExecutionUrl(String hostUrl) {
         return String.format("http://%s:9393/tasks/executions", hostUrl);

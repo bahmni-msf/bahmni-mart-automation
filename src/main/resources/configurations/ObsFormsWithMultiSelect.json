@@ -1534,21 +1534,6 @@
       ]
     },
     {
-      "form_name": "ana_nutritional_assessment",
-      "conceptsList": [
-        "id_ana_nutritional_assessment",
-        "patient_id",
-        "encounter_id",
-        "id_surgical_ward_admission_nursing_assessment",
-        "obs_datetime",
-        "location_id",
-        "location_name",
-        "program_id",
-        "program_name",
-        "ana_nutritional_assessment"
-      ]
-    },
-    {
       "form_name": "ana_orientation_of_the_patient",
       "conceptsList": [
         "id_ana_orientation_of_the_patient",
