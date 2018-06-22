@@ -81,16 +81,25 @@ public class Utils {
     }
 
     public static ResultSet getTableData (Connection dbconn, String table_name, int patientID) throws SQLException {
+
+        int encounter_id = 0;
         //String table_name = allTables.getString(3); // This is faster compared to using TABLE_NAME
         DatabaseMetaData dbm = dbconn.getMetaData();
         Statement stmt = dbconn.createStatement();
-        String query = String.format("Select * from %s where patient_id=%d order by obs_datetime desc limit 1", table_name,patientID);
+        String query;
+        query = String.format("Select * from %s where patient_id=%d order by obs_datetime desc limit 1", table_name,patientID);
         System.out.println("Executing query for patient: "+ query);
         //ResultSet rs = stmt.executeQuery("Select * from "+ table_name + " " + "where patient_id="+ patientID +" order by obs_datetime desc limit 1");
+        ResultSet rs1 = stmt.executeQuery(query);
+
+        while(rs1.next()) {
+
+            encounter_id=rs1.getInt("encounter_id");
+        }
+
+        query = String.format("Select * from %s where patient_id=%d and encounter_id=%d order by obs_datetime", table_name,patientID, encounter_id);
+        System.out.println("Executing Query: "+ query);
         ResultSet rs = stmt.executeQuery(query);
-//        while(rs.next()) {
-//                System.out.println(rs.getInt(1) + "  " + rs.getInt(2) + "  " + rs.getInt(3)+"  " + rs.getString(4));
-//        }
 
         return rs;
     }

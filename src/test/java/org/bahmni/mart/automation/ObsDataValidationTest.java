@@ -1,8 +1,6 @@
 package org.bahmni.mart.automation;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import org.bahmni.mart.automation.Pages.NewPatientPage;
-import org.bahmni.mart.automation.Pages.RegistrationFirstPage;
 import org.bahmni.mart.automation.helpers.*;
 import org.bahmni.mart.automation.models.FormData;
 import org.bahmni.mart.automation.models.PatientData;
@@ -11,14 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -77,23 +72,110 @@ public class ObsDataValidationTest {
         @Test
         public void validateObsFormsWithoutMultiSelect(){
 
-            validateObsFormsData(false);
+            validateObsFormsData(false, "formData.json", "formDataToBeVerified.json");
 
         }
 
         @Test
         public void validateObsFormsWithMultiSelectAndAddMore(){
 
-            validateObsFormsData(true);
+                List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson("formData.json");
+                String formName, tableName, restURL, jobExecutionId;
+                List<FormData> toBeVerifiedDataList = ToBeVerifiedDataJSONLoader.readFormDataFromJson("obsMultiSelectDataToBeVerified.json");
+                Map<String, String> FQDNfieldValueMap = new HashMap<>();
+//                ArrayList<String> multiselectTestData = new ArrayList<>();
+//                ArrayList<String> multiselectDBData = new ArrayList<>();
+//                String[] multiselectColumnValues;
+
+                NewPatientPage np = PageFactory.initElements(driver, NewPatientPage.class);
+                List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
+                String patientIQ = "";
+                int patientId = 0;
+
+                try {
+
+                    restURL = new Utils().getRestURL();
+                    SeleniumHelper.login(driver);
+                    SeleniumHelper.goToNewPatientForm(driver);
+
+                    for (PatientData patientData: patientDetailsList) {
+                        patientIQ = np.createPatient(patientData,driver);
+                        patientId = Utils.getPatientIdentifier(openmrsConnection,patientIQ);
+                    }
+                    SeleniumHelper.goToProgramDashBoard(driver, patientIQ);
+                    SeleniumHelper.goToConsultation(driver, patientIQ);
+                    // For each Obs form declared in the input JSON file fill the data using selenium
+                    // After filling the data and saving the form, also confirm that the data is correctly entered in the form
+
+                    for (FormData formData : formDataList) {
+                        formName = formData.getFormName();
+                        System.out.println("Filling Data for Obs form from UI: " + formName);
+                        SeleniumHelper.fillFormData(driver, formName, formData);
+
+                    }
+
+                    // Once data is filled in Obs forms above, run mart using Rest and poll till job is completed successfully
+                    jobExecutionId = RestHelper.startBatchJob(restURL);
+
+                    if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
+                        System.out.println("mart Job is executed successfully");
+                        for (FormData formData : toBeVerifiedDataList) {
+                            ArrayList<String> multiselectTestData = new ArrayList<>();
+                            ArrayList<String> multiselectDBData = new ArrayList<>();
+                            String[] multiselectColumnValues;
+                            // Fetch the input data that was entered to Obs form
+                            FQDNfieldValueMap = formData.getFieldValueMap();
+                            tableName = formData.getFormName();
+                            //From mart DB Fetch the column names and type ( int, str) of column along with data from the table for Obs form
+                            ResultSet rs = Utils.getTableData(postgresConnection, tableName, patientId);
+
+                            while (rs.next()) {
+                                for (String columnName : FQDNfieldValueMap.keySet()) {
+                                    if (columnName.endsWith("_multiselect")) {
+                                        // First fetch the multiselect values into a list
+                                        multiselectColumnValues = FQDNfieldValueMap.get(columnName).split(";");
+                                        // Now remove the _multiselect suffix from the column name so that we can get the column values from DB
+                                        columnName = columnName.split("_multiselect")[0];
+
+                                        for (String word : multiselectColumnValues) {
+                                            //System.out.println(word);
+                                            if (!multiselectTestData.contains(word)) {
+                                                multiselectTestData.add(word);
+                                            }
+                                        }
+                                        //System.out.println("Data from DB for multi: " + rs.getString(columnName));
+                                        if (!multiselectDBData.contains(rs.getString(columnName))) {
+                                            multiselectDBData.add(rs.getString(columnName));
+                                        }
+                                    }
+                                }
+                            }
+
+                            Collections.sort(multiselectTestData);
+                            Collections.sort(multiselectDBData);
+
+                            System.out.println("Data from test file: " + multiselectTestData);
+                            System.out.println("Data from DB: "+ multiselectDBData);
+
+                            assertEquals("The data validation for multiselect Table: " + tableName + " failed." + "multiselect value from Test: " + multiselectTestData + " " + "data values from mart: " + multiselectDBData, multiselectTestData, multiselectDBData );
+
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+                }
+
         }
 
 
-        public void validateObsFormsData(boolean isMultiSelectEnabled) {
+        public void validateObsFormsData(boolean isMultiSelectEnabled, String inputDataFile, String toBeVerifiedDatafileName) {
 
-            List<FormData> formDataList = FormDataJsonLoader.readFormDataFromJson();
+            List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson(inputDataFile);
             String formName;
             Map<String, String> columnNameType = new HashMap<>();
-            List<FormData> FQDNDataList = FQDNJSONLoader.readFormDataFromJson();
+            List<FormData> FQDNDataList = ToBeVerifiedDataJSONLoader.readFormDataFromJson(toBeVerifiedDatafileName);
             String tableName;
             Map<String, String> FQDNfieldValueMap = new HashMap<>();
             String restURL;

@@ -8,13 +8,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-public class FQDNJSONLoader {
+public class ToBeVerifiedDataJSONLoader {
 
-    public static List<FormData> readFormDataFromJson()  {
+    public static List<FormData> readFormDataFromJson(String fileName)  {
         JsonObject json = null;
         try {
             json = (JsonObject) new JsonParser().
-                    parse(new FileReader("src/main/resources/configurations/formDataToBeVerified.json"));
+                    parse(new FileReader("src/main/resources/configurations/"+ fileName));
         } catch (FileNotFoundException e) {
             e.getMessage();
         }

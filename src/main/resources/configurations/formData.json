@@ -4,6 +4,7 @@
     "Type of medical information received" : "New medical file",
     "Date Received": "04/04/2018",
     "Is the medical file complete?": "Yes",
+    "Specialty": "Orthopedic;Plastic",
     "Stage": 4,
     "Date of presentation": "04/13/2018",
     "Outcome for 1st stage surgical validation": "Valid",
@@ -13,6 +14,7 @@
     "Name of Surgeon 2": "Dr. Ashraf Nabhan",
     "Does the Patient need Surgical Final Validation?": "Yes",
     "Name of Anaesthetist": "Dr. Abdulraoof Al-Ahmad"
+
 
   },
   "Surgeon Pre-Op Assessment and Treatment Plan": {
@@ -24,11 +26,11 @@
     "Associated vascular injury": "Yes",
     "Is patient for surgery": "No",
     "Initial general plan": "Needs Physio / Other consultation",
-    "Surgical objective": "Repair anatomy",
+    "Surgical objective": "Repair anatomy;Replace loss;Manage long-term pathology;Prevent future problems",
     "Frequency of Operations": "One Operation",
     "Sites (donor areas excluded)": "All objectives one site",
     "Estimated length of stay": "Less than 30 days",
     "Does the patient need further admissions": "No",
-    "Need consultations": "Orthopedic"
+    "Need consultations": "Orthopedic;Maxillo-facial;Plastic"
   }
 }

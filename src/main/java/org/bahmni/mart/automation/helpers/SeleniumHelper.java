@@ -39,7 +39,7 @@ public class SeleniumHelper {
 //    }
 
     public static void fillFormData(WebDriver driver, String formName, FormData formData) {
-        //List<FormData> formDataList = FormDataJsonLoader.readFormDataFromJson();
+        //List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson();
 
         ObservationsPage obspage = PageFactory.initElements(driver, ObservationsPage.class);
 

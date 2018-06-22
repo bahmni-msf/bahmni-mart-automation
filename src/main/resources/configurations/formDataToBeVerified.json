@@ -18,7 +18,8 @@
     "location_id": "10",
     "location_name": "Admission",
     "program_id": "1",
-    "program_name": "Reconstructive Surgery"
+    "program_name": "Reconstructive Surgery",
+    "fstg_specialty_determined_by_mlo_multiselect": "Orthopedic;Plastic"
   },
   "surgeon_pre_op_assessment_and_treatment_plan": {
     "sap_date_of_consultation": "2018-04-27",
