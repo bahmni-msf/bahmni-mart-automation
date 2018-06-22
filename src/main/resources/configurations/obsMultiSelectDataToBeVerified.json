@@ -1,0 +1,12 @@
+{
+  "fstg_specialty_determined_by_mlo":{
+    "fstg_specialty_determined_by_mlo_multiselect": "Orthopedic;Plastic"
+  },
+  "sap_need_consultations": {
+    "sap_need_consultations_multiselect": "Orthopedic;Maxillo-facial;Plastic"
+  },
+  "sap_surgical_objective": {
+    "sap_surgical_objective_multiselect": "Repair anatomy;Replace loss;Manage long-term pathology;Prevent future problems"
+  }
+}
+
