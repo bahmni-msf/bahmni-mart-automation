@@ -88,7 +88,7 @@ public class ObsSchemaValidationTest {
 
             if (isMultiSelectEnabled) {
 
-                //jobExecutionId = RestHelper.startBatchJob(restURL);
+                jobExecutionId = RestHelper.startBatchJob(restURL);
                 obsForms = obsjsonreader.getObsFormsfromJson(true);
                 System.out.println("Validating Schema for Obs forms with multi select. Total forms count: " + obsForms.size());
             }
@@ -98,8 +98,8 @@ public class ObsSchemaValidationTest {
                 obsForms = obsjsonreader.getObsFormsfromJson(false);
                 System.out.println("Validating Schema for Obs forms without multiselect. Total forms count: " + obsForms.size());
             }
-            //if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
-            if ( true ) {
+            if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
+            //if ( true ) {
 
                 for (ObsForm form : obsForms) {
                     formName = form.getFormName();

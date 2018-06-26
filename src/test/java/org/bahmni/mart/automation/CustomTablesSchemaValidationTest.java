@@ -2,6 +2,7 @@
 package org.bahmni.mart.automation;
 
 
+import org.bahmni.mart.automation.helpers.RestHelper;
 import org.bahmni.mart.automation.helpers.Utils;
 import org.bahmni.mart.automation.models.CustomTableDefinition;
 import org.bahmni.mart.automation.readers.CustomTablesJsonReader;
@@ -66,22 +67,31 @@ public class CustomTablesSchemaValidationTest {
         String inputTableName = null;
         ArrayList<String> inputColumns = null;
         ArrayList<String> martTableColumns = null;
+        String restURL;
         int formCount = 0;
+        String jobExecutionId;
 
         try {
 
+            restURL = new Utils().getRestURL();
+
+            jobExecutionId = RestHelper.startBatchJob(restURL);
+
             customTables = ctjsonreader.getCustomTablesfromJson();
             System.out.println("Validating Schema for Custom Tables. Total tables count: " + customTables.size());
-            for (CustomTableDefinition table : customTables) {
-                inputTableName = table.getTableName();
-                inputColumns = ctjsonreader.getCustomTablesColumnsList(inputTableName);
-                martTableColumns = Utils.getTableColumns(postgresconnection, inputTableName);
-                Collections.sort(inputColumns);
-                Collections.sort(martTableColumns);
+            if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
+            //if (true) {
+                for (CustomTableDefinition table : customTables) {
+                    inputTableName = table.getTableName();
+                    inputColumns = ctjsonreader.getCustomTablesColumnsList(inputTableName);
+                    martTableColumns = Utils.getTableColumns(postgresconnection, inputTableName);
+                    Collections.sort(inputColumns);
+                    Collections.sort(martTableColumns);
 
-                Assert.assertTrue("The schema validation for Custom Table: " + inputTableName + " failed." + "Json Columns: " + inputColumns + " " + "Columns from mart: " + martTableColumns, inputColumns.equals(martTableColumns));
+                    Assert.assertTrue("The schema validation for Custom Table: " + inputTableName + " failed." + "Json Columns: " + inputColumns + " " + "Columns from mart: " + martTableColumns, inputColumns.equals(martTableColumns));
+                }
             }
-        } catch (FileNotFoundException | SQLException e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
         }

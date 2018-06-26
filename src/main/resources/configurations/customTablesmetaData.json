@@ -1,7 +1,7 @@
 {
   "customTables": [
     {
-      "tableName": "programs",
+      "tableName": "programs_default",
       "columns": [
         "program_id",
         "program_name",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "tableName": "program_outcomes",
+      "tableName": "program_outcomes_default",
       "columns": [
         "program_id",
         "program_name",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "tableName": "patient_program_data",
+      "tableName": "patient_program_data_default",
       "columns": [
         "age_during_completion",
         "age_during_enrollment",
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "tableName": "patient_state",
+      "tableName": "patient_state_default",
       "columns": [
         "patient_state_id",
         "patient_program_id",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "tableName": "program_workflow",
+      "tableName": "program_workflow_default",
       "columns": [
         "program_id",
         "program_workflow_id",
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "tableName": "program_workflow_states",
+      "tableName": "program_workflow_states_default",
       "columns": [
         "program_workflow_state_id",
         "program_workflow_id",
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "tableName": "person_details",
+      "tableName": "person_details_default",
       "columns": [
         "person_id",
         "person_name_id",
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "tableName": "person_address",
+      "tableName": "person_address_default",
       "columns": [
         "person_id",
         "preferred",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "tableName": "address_hierarchy_level",
+      "tableName": "address_hierarchy_level_default",
       "columns": [
         "address_hierarchy_level_id",
         "name",
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "tableName": "person_attribute_info",
+      "tableName": "person_attribute_info_default",
       "columns": [
         "person_attribute_type_id",
         "name",
@@ -155,14 +155,14 @@
       ]
     },
     {
-      "tableName": "patient_allergy_status",
+      "tableName": "patient_allergy_status_default",
       "columns": [
         "patient_id",
         "allergy_status"
       ]
     },
     {
-      "tableName": "medication_data",
+      "tableName": "medication_data_default",
       "columns": [
         "patient_id",
         "patient_program_id",
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "tableName": "appointment_service",
+      "tableName": "appointment_service_default",
       "columns": [
         "appointment_service_id",
         "service_name",
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "tableName": "service_availability",
+      "tableName": "service_availability_default",
       "columns": [
         "appointment_service_id",
         "service_name",
@@ -221,14 +221,14 @@
       ]
     },
     {
-      "tableName": "appointment_speciality",
+      "tableName": "appointment_speciality_default",
       "columns": [
         "speciality_id",
         "speciality"
       ]
     },
     {
-      "tableName": "patient_appointment",
+      "tableName": "patient_appointment_default",
       "columns": [
         "patient_id",
         "appointment_id",
@@ -238,6 +238,8 @@
         "appointment_speciality",
         "appointment_service",
         "appointment_service_type",
+        "appointment_service_type_duration",
+        "appointment_service_duration",
         "appointment_status",
         "appointment_location",
         "appointment_kind",
@@ -245,7 +247,7 @@
       ]
     },
     {
-      "tableName": "patient_visit_details",
+      "tableName": "patient_visit_details_default",
       "columns": [
         "visit_id",
         "patient_id",
@@ -260,7 +262,7 @@
       ]
     },
     {
-      "tableName": "patient_encounter_details",
+      "tableName": "patient_encounter_details_default",
       "columns": [
         "patient_id",
         "visit_id",
@@ -282,7 +284,7 @@
       ]
     },
     {
-      "tableName": "provider",
+      "tableName": "provider_default",
       "columns": [
         "provider_id",
         "person_id",
@@ -292,7 +294,7 @@
       ]
     },
     {
-      "tableName": "location",
+      "tableName": "location_default",
       "columns": [
         "location_id",
         "name",
@@ -323,7 +325,7 @@
       ]
     },
     {
-      "tableName": "location_tag_map",
+      "tableName": "location_tag_map_default",
       "columns": [
         "location_id",
         "location_tag_id",
@@ -332,7 +334,7 @@
       ]
     },
     {
-      "tableName": "location_attribute_details",
+      "tableName": "location_attribute_details_default",
       "columns": [
         "location_attribute_id",
         "location_id",
@@ -349,7 +351,7 @@
       ]
     },
     {
-      "tableName": "visit_attribute_details",
+      "tableName": "visit_attribute_details_default",
       "columns": [
         "visit_id",
         "visit_attribute_id",
@@ -366,7 +368,7 @@
       ]
     },
     {
-      "tableName": "provider_attribute_details",
+      "tableName": "provider_attribute_details_default",
       "columns": [
         "provider_attribute_id",
         "attribute_type_id",
@@ -383,7 +385,7 @@
       ]
     },
     {
-      "tableName": "bed_patient_assignment",
+      "tableName": "bed_patient_assignment_default",
       "columns": [
         "patient_id",
         "bed_id",
@@ -398,7 +400,7 @@
       ]
     },
     {
-      "tableName": "bed_tags",
+      "tableName": "bed_tags_default",
       "columns": [
         "bed_id",
         "bed_location",
@@ -411,7 +413,7 @@
       ]
     },
     {
-      "tableName": "current_bed_details",
+      "tableName": "current_bed_details_default",
       "columns": [
         "bed_id",
         "bed_location",
@@ -421,7 +423,7 @@
       ]
     },
     {
-      "tableName": "conditions",
+      "tableName": "conditions_default",
       "columns": [
         "condition_id",
         "previous_condition_id",
@@ -479,7 +481,7 @@
       ]
     },
     {
-      "tableName": "surgical_block",
+      "tableName": "surgical_block_default",
       "columns": [
         "surgical_block_id",
         "primary_provider_name",
@@ -493,7 +495,7 @@
       ]
     },
     {
-      "tableName": "surgical_appointment",
+      "tableName": "surgical_appointment_default",
       "columns": [
         "surgical_appointment_id",
         "surgical_block_id",
@@ -510,7 +512,7 @@
       ]
     },
     {
-      "tableName": "surgical_appointment_attribute_type_details",
+      "tableName": "surgical_appointment_attribute_type_details_default",
       "columns": [
         "name",
         "description"
