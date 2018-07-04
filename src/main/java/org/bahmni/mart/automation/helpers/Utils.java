@@ -36,10 +36,26 @@ public class Utils {
         return columnList;
     }
 
-    public  Connection getDBConnection(String dbms) {
+    public static Properties getExternalizedParameters() {
 
         Properties connprops = new Properties();
-        FileInputStream propsfilestream = null;
+
+        try {
+
+            InputStream ism = Utils.class.getClassLoader().getResourceAsStream("connection.properties");
+            connprops.load(ism);
+        }
+
+        catch ( IOException e) {
+            e.printStackTrace();
+        }
+
+        return connprops;
+    }
+
+    public  Connection getDBConnection(String dbms) {
+
+        Properties connprops = Utils.getExternalizedParameters();
         Connection DBconn = null;
         String URL = "";
         String username = "";
@@ -47,12 +63,6 @@ public class Utils {
 
         try {
 
-            //String File_Path = this.getClass().getClassLoader().getResourceAsStream("base/connection.properties");
-
-            //propsfilestream = new FileInputStream().getClassLoader().getResourceAsStream("base/connection.properties"));
-            //connprops.load(new InputStreamReader(getClass().getClass().getClassLoader().getResourceAsStream("connection.properties")));
-            InputStream ism = this.getClass().getClassLoader().getResourceAsStream("connection.properties");
-            connprops.load(ism);
 
             if (dbms.equals("mysql")) {
 
@@ -73,7 +83,7 @@ public class Utils {
 
         }
 
-        catch (SQLException | ClassNotFoundException | IOException e) {
+        catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -113,10 +123,6 @@ public class Utils {
         ResultSet tableSchemaSet = dbm.getColumns(null, null, table_name, null);
         //System.out.println("Schema for table: " + table_name);
         while (tableSchemaSet.next()) {
-//                System.out.print("Column Name: " + tableSchemaSet.getString("COLUMN_NAME") + " "
-//                        + "Column Data: " + tableSchemaSet.getString("TYPE_NAME"));
-            //columnList.add(tableSchemaSet.getString("COLUMN_NAME"));
-            //columnNameTypeMap.put(tableSchemaSet.getString("COLUMN_NAME"),tableSchemaSet.getString("TYPE_NAME"));
             // index value "4" below is equivalent to using "COLUMN_NAME" and "6" is "TYPE_NAME" but indexes are faster
             columnNameTypeMap.put(tableSchemaSet.getString(4),tableSchemaSet.getString(6));
         }
@@ -133,9 +139,6 @@ public class Utils {
 
         System.out.println(stmt1);
         ResultSet rs = stmt.executeQuery(stmt1);
-//        while(rs.next()) {
-//                System.out.println(rs.getInt(1));
-//        }
         rs.next();
         return rs.getInt(2);
     }

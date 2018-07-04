@@ -99,7 +99,6 @@ public class ObsSchemaValidationTest {
                 System.out.println("Validating Schema for Obs forms without multiselect. Total forms count: " + obsForms.size());
             }
             if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
-            //if ( true ) {
 
                 for (ObsForm form : obsForms) {
                     formName = form.getFormName();

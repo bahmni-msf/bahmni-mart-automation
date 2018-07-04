@@ -29,8 +29,6 @@ public class RestHelper {
                     .asString().getBody();
         }
     }
-    
-    //public static String startBatchJobwithoutmultiselect(String hostUrl)
 
     private static String getTaskExecutionUrl(String hostUrl) {
         return String.format("http://%s:9393/tasks/executions", hostUrl);

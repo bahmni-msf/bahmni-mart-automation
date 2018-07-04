@@ -61,10 +61,5 @@ public class CustomTablesJsonReader {
             return null;
         }
 
-        public static void main (String args[]) throws FileNotFoundException {
-            CustomTablesJsonReader obsjr = new CustomTablesJsonReader();
-            obsjr.readJson();
-        }
-
 }
 

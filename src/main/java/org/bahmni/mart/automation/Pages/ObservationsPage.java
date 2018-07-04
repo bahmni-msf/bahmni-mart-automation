@@ -24,7 +24,6 @@ public class ObservationsPage {
 
     public void fillTemplateData(FormData formData, WebDriver driver) {
         Map<String, String> fieldValueMap = formData.getFieldValueMap();
-        //List<WebElement> observationNodes = driver.findElements(By.cssSelector(".leaf-observation-node"));
         for (String fieldName : fieldValueMap.keySet()) {
             boolean fieldFound = false;
             String value = fieldValueMap.get(fieldName);
@@ -42,10 +41,6 @@ public class ObservationsPage {
                             break;
                         } else {
                             WebElement inputField = observationNode.findElement(By.tagName("input"));
-//                            if (inputField.getText().isEmpty()) {
-//                                inputField.sendKeys(value, Keys.TAB);
-//                                break;
-//                            }
                             if (!inputField.getAttribute("value").isEmpty() && !inputField.getAttribute("type").equalsIgnoreCase("date")){
                                 inputField.clear();
                                 inputField.sendKeys(value, Keys.TAB);
@@ -100,7 +95,6 @@ public class ObservationsPage {
                         }
                     }
                 }
-                //observationNodes = driver.findElements(By.cssSelector(".leaf-observation-node"));
 
             }
             if (!fieldFound) {

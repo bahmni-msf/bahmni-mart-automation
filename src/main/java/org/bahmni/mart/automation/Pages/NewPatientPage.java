@@ -1,16 +1,12 @@
 package org.bahmni.mart.automation.Pages;
 
 import org.bahmni.mart.automation.helpers.PageWaits;
-import org.bahmni.mart.automation.models.FormData;
 import org.bahmni.mart.automation.models.PatientData;
-import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
 import java.util.Map;
 
 public class NewPatientPage {

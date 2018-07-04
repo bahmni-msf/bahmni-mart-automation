@@ -70,9 +70,4 @@ public class ObsJsonReader {
         return null;
     }
 
-    public static void main (String args[]) throws FileNotFoundException {
-        ObsJsonReader obsjr = new ObsJsonReader();
-        obsjr.readJson(true);
-    }
-
 }

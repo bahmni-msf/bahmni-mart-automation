@@ -1,7 +1,5 @@
 package org.bahmni.mart.automation.Pages;
 
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,10 +65,6 @@ public class RegistrationSearch {
         iconCreateNew.click();
     }
 
-//    public void verifyCreateNewIconNotDisplayed(){
-//        Assert.assertFalse(driver.findElements(By.cssSelector("i.fa-plus")).size() != 0);
-//    }
-
     public void enterName(String name) {
         txtName.sendKeys(name,Keys.ENTER);
     }
@@ -110,35 +104,4 @@ public class RegistrationSearch {
         btnRegSearch.click();
     }
 
-//    public void getFirstResult() {
-//        waitForElementOnPage(gridSearchResults);
-//        gridSearchResults.findElements(By.tagName("a")).get(0).click();
-//    }
-    public void verifySearchResults(){
-        //TODO: add verifying search results
-    }
-//    public void verifySearchResults(Patient patient){
-//        BahmniTable dataOnUI=extractTableDataFrom(By.className("table"));
-//        for(TableRow row : dataOnUI.getTableRows()){
-//            if(row.getCell("ID").equals(patient.getIdentifier()))
-//            {
-//                Assert.assertEquals("Name dont match",patient.getFirstName()+" " + patient.getLastName(),row.getCell("Name"));
-//                Assert.assertEquals("Gender dont match",patient.getGender().equals("Homme")?"M":patient.getGender().equals("Femme")?"F":"O",row.getCell("Gender"));
-//                Assert.assertEquals("Age dont match",patient.getAge(),row.getCell("Age"));
-//            }
-//        }
-//    }
-//    public void verifySearchResults(String text, String column) {
-//        BahmniTable dataOnUI=extractTableDataFrom(By.className("table"));
-//        Assert.assertTrue("Column values dont match",dataOnUI.doesColumnOfEachRowContainsValue(text,column));
-//    }
-
-//    public void validateFrenchOnSearchPage() {
-//        Assert.assertEquals("", "Recherche",driver.findElement(By.xpath("//*[@id=\"view-content\"]/div[1]/header/ul/li[1]/a/span")).getText());
-//        Assert.assertEquals("", "Créer nouveau", driver.findElement(By.xpath("//*[@id=\"view-content\"]/div[1]/header/ul/li[2]/a/span")).getText());
-//        Assert.assertEquals("", "ID Patient", driver.findElement(By.xpath("//*[@id=\"view-content\"]/div[3]/section/section/article[1]/form/label")).getText());
-//        Assert.assertEquals("", "ID Patient", driver.findElement(By.xpath("//*[@id=\"view-content\"]/div[3]/section/section/article[1]/form/label")).getText());
-//        Assert.assertEquals("", "Nom", driver.findElement(By.xpath("//*[@id=\"view-content\"]/div[3]/section/section/article[2]/form/article[1]/label")).getText());
-//        Assert.assertEquals("", "Commune", driver.findElement(By.xpath("//*[@id=\"view-content\"]/div[3]/section/section/article[2]/form/article[2]/label")).getText());
-//    }
 }

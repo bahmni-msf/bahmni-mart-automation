@@ -1,5 +1,6 @@
 package org.bahmni.mart.automation.Pages;
 
+import org.bahmni.mart.automation.helpers.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,11 +8,16 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.util.Properties;
+
 public class LoginPage {
 
     private WebDriver driver;
-    private String PAGE_URL= "https://qa-reporting.ehealthunit.org/bahmni/home/index.html";
-    //private String PAGE_URL= "https://www.facebook.com";
+
+    Properties connprops = Utils.getExternalizedParameters();
+    private String PAGE_URL= connprops.getProperty("PAGE_URL");
 
     @FindBy(how= How.CSS, using = "#username")
     public WebElement txtUserName;

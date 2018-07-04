@@ -10,7 +10,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -20,26 +19,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class SeleniumHelper {
 
-//    public static void main(String args[]) {
-//        System.setProperty("webdriver.gecko.driver", "/Users/lakshmip/Documents/chromedriver");
-//        System.setProperty("webdriver.chrome.driver", "/Users/lakshmip/Documents/chromedriver");
-//        WebDriver driver = new ChromeDriver();
-//        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-//
-//        login(driver);
-//        goToProgramDashBoard(driver);
-//        goToConsultation(driver);
-//        //fillFormData(driver, "test", );
-//    }
-
     public static void fillFormData(WebDriver driver, String formName, FormData formData) {
-        //List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson();
 
         ObservationsPage obspage = PageFactory.initElements(driver, ObservationsPage.class);
 
@@ -55,8 +40,6 @@ public class SeleniumHelper {
 
     public static void goToConsultation(WebDriver driver, String patientIQ) {
         ProgramManagementPage pmp = PageFactory.initElements(driver, ProgramManagementPage.class);
-//        pmp.clickonProgram();
-//        waitForSpinner(driver);
         pmp.goToBackPage();
         PageWaits.waitForSpinner(driver);
 
@@ -71,7 +54,6 @@ public class SeleniumHelper {
         waitForSpinner(driver);
         RegistrationFirstPage rfp = PageFactory.initElements(driver, RegistrationFirstPage.class);
         rfp.enterProgramDashboardPage();
-        //rfp.enterVisitDetailsPage();
         waitForSpinner(driver);
 
         pmp.clickonProgram();
@@ -83,12 +65,6 @@ public class SeleniumHelper {
     }
 
     public static void goToProgramDashBoard(WebDriver driver, String patientIQ) {
-//        HomePage home = new HomePage(driver);
-//        home.clickRegistrationApp();
-//        waitForSpinner(driver);
-//        RegistrationSearch rs = new RegistrationSearch(driver);
-//        rs.searchUsingIdentifier(patientIQ);
-//        waitForSpinner(driver);
         RegistrationFirstPage rfp = PageFactory.initElements(driver, RegistrationFirstPage.class);
         rfp.enterVisitDetailsPage();
         waitForSpinner(driver);
@@ -108,9 +84,13 @@ public class SeleniumHelper {
     }
 
     public static void login(WebDriver driver) {
+        Properties connprops = Utils.getExternalizedParameters();
+        String username = connprops.getProperty("username");
+        String password = connprops.getProperty("password");
+        String location = connprops.getProperty("location");
         LoginPage lp = new LoginPage(driver);
         waitForSpinner(driver);
-        lp.login("superman", "P@ssw0rd", "Admission");
+        lp.login(username, password, location);
         waitForSpinner(driver);
     }
 

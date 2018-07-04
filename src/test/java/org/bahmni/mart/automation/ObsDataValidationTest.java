@@ -72,8 +72,6 @@ public class ObsDataValidationTest {
         @Test
         public void validateObsFormsWithoutMultiSelect(){
 
-            //validateObsFormsData(false, "formData.json", "formDataToBeVerified.json");
-
             List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson("formData.json");
             String formName;
             Map<String, String> columnNameType = new HashMap<>();
@@ -82,7 +80,6 @@ public class ObsDataValidationTest {
             Map<String, String> FQDNfieldValueMap = new HashMap<>();
             String restURL;
             String jobExecutionId;
-            int formCount = 0;
 
             NewPatientPage np = PageFactory.initElements(driver, NewPatientPage.class);
             List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
@@ -99,7 +96,6 @@ public class ObsDataValidationTest {
                 for (PatientData patientData: patientDetailsList) {
 
                     patientIQ = np.createPatient(patientData,driver);
-                    //np.goToHomePage(driver);
                     patientId = Utils.getPatientIdentifier(openmrsConnection,patientIQ);
 
                 }
@@ -123,7 +119,6 @@ public class ObsDataValidationTest {
                 jobExecutionId = RestHelper.startBatchJob(restURL, false);
 
                 if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
-                //if (true) {
                     System.out.println("mart Job is executed successfully");
 
                     for (FormData formData : FQDNDataList) {
@@ -165,7 +160,7 @@ public class ObsDataValidationTest {
                                             multiselectTestData.add(word);
                                         }
                                     }
-                                    //System.out.println("Data from DB for multi: " + rs.getString(columnName));
+
                                     if (!multiselectDBData.contains(rs.getString(columnName))) {
                                         multiselectDBData.add(rs.getString(columnName));
                                     }
@@ -179,7 +174,6 @@ public class ObsDataValidationTest {
                                     if (!nonMultiTestData.isEmpty()) {
                                         dataMap.put(columnName, nonMultiTestData);
                                     }
-                                    //System.out.println("Column: " + columnName + " has data: " + columnData);
                                     System.out.println("Verifying column: " + columnName + ". str Data from DB: " + columnData + " Data from test: " + FQDNfieldValueMap.get(columnName));
                                 }
                             }
@@ -215,9 +209,6 @@ public class ObsDataValidationTest {
                 String formName, tableName, restURL, jobExecutionId;
                 List<FormData> toBeVerifiedDataList = ToBeVerifiedDataJSONLoader.readFormDataFromJson("obsMultiSelectDataToBeVerified.json");
                 Map<String, String> FQDNfieldValueMap = new HashMap<>();
-//                ArrayList<String> multiselectTestData = new ArrayList<>();
-//                ArrayList<String> multiselectDBData = new ArrayList<>();
-//                String[] multiselectColumnValues;
 
                 NewPatientPage np = PageFactory.initElements(driver, NewPatientPage.class);
                 List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
@@ -270,12 +261,12 @@ public class ObsDataValidationTest {
                                         columnName = columnName.split("_multiselect")[0];
 
                                         for (String word : multiselectColumnValues) {
-                                            //System.out.println(word);
+
                                             if (!multiselectTestData.contains(word)) {
                                                 multiselectTestData.add(word);
                                             }
                                         }
-                                        //System.out.println("Data from DB for multi: " + rs.getString(columnName));
+
                                         if (!multiselectDBData.contains(rs.getString(columnName))) {
                                             multiselectDBData.add(rs.getString(columnName));
                                         }
@@ -298,120 +289,6 @@ public class ObsDataValidationTest {
 
                     e.printStackTrace();
                 }
-
-        }
-
-
-        public void validateObsFormsData(boolean isMultiSelectEnabled, String inputDataFile, String toBeVerifiedDatafileName) {
-
-            List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson(inputDataFile);
-            String formName;
-            Map<String, String> columnNameType = new HashMap<>();
-            List<FormData> FQDNDataList = ToBeVerifiedDataJSONLoader.readFormDataFromJson(toBeVerifiedDatafileName);
-            String tableName;
-            Map<String, String> FQDNfieldValueMap = new HashMap<>();
-            String restURL;
-            String jobExecutionId;
-            int formCount = 0;
-
-            NewPatientPage np = PageFactory.initElements(driver, NewPatientPage.class);
-            List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
-            String patientIQ = "";
-            int patientId = 0;
-            Map<String, String> patientDetailValues = new HashMap<>();
-
-            try {
-
-                restURL = new Utils().getRestURL();
-
-                SeleniumHelper.login(driver);
-                SeleniumHelper.goToNewPatientForm(driver);
-
-                for (PatientData patientData: patientDetailsList) {
-
-                    patientIQ = np.createPatient(patientData,driver);
-                    //np.goToHomePage(driver);
-                    patientId = Utils.getPatientIdentifier(openmrsConnection,patientIQ);
-
-                }
-
-                SeleniumHelper.goToProgramDashBoard(driver, patientIQ);
-                SeleniumHelper.goToConsultation(driver, patientIQ);
-
-
-                // For each Obs form declared in the input JSON file fill the data using selenium
-                // After filling the data and saving the form, also confirm that the data is correctly entered in the form
-
-                for (FormData formData : formDataList) {
-                    formName = formData.getFormName();
-                    System.out.println("Filling Data for Obs form from UI: " + formName);
-                    SeleniumHelper.fillFormData(driver, formName, formData);
-
-                }
-
-                // Once data is filled in Obs forms above, run mart using Rest and poll till job is completed successfully
-
-                if (isMultiSelectEnabled) {
-                    jobExecutionId = RestHelper.startBatchJob(restURL);
-                }
-                else {
-                    jobExecutionId = RestHelper.startBatchJob(restURL, false);
-                }
-                if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
-
-                    System.out.println("mart Job is executed successfully");
-                    //Thread.sleep(2000);
-
-                    for (FormData formData : FQDNDataList) {
-
-                        // Fetch the input data that was entered to Obs form
-                        FQDNfieldValueMap = formData.getFieldValueMap();
-                        tableName = formData.getFormName();
-
-                        //From mart DB Fetch the column names and type ( int, str) of column along with data from the table for Obs form
-                        columnNameType = Utils.getTableColumnsAndTypes(postgresConnection, tableName);
-                        ResultSet rs = Utils.getTableData(postgresConnection, tableName, patientId);
-                        while (rs.next()) {
-                            for (String columnName : FQDNfieldValueMap.keySet()) {
-                                if (columnNameType.get(columnName).equals("text") || columnNameType.get(columnName).equals("date")) {
-                                    String columnData ;
-                                    columnData = rs.getString(columnName);
-                                    //System.out.println("Column: " + columnName + " has data: " + columnData);
-                                    System.out.println("Verifying column: " + columnName + ". str Data from DB: " + columnData + " Data from test: " + FQDNfieldValueMap.get(columnName));
-                                    if (columnData != null) {
-                                        assertTrue("The output column value is not matching input data ", FQDNfieldValueMap.get(columnName).contains(columnData));
-
-                                    }
-                                    else {
-                                        assertEquals(columnData, FQDNfieldValueMap.get(columnName));
-                                    }
-                                }
-                                else if (columnNameType.get(columnName).contains("int")) {
-
-                                    Integer columnData = null;
-
-                                    columnData = rs.getInt(columnName);
-                                    //System.out.println("Column: " + columnName + " has data: " + columnData);
-                                    System.out.println("Verifying column: " + columnName + ". int Data from DB: " + columnData + " Data from test: " + FQDNfieldValueMap.get(columnName));
-                                    if (columnData != null) {
-                                        assertTrue("The output column value is not matching input data ", FQDNfieldValueMap.get(columnName).contains(columnData.toString()));
-                                    }
-                                    else {
-                                        assertEquals(columnData, FQDNfieldValueMap.get(columnName));
-                                    }
-                                }
-                                //System.out.println("Column Name: "+ columnName + " data type is: "+ columnNameType.get(columnName));
-
-                            }
-
-                        }
-                        System.out.print("Number of columns is: " + columnNameType.size());
-                    }
-                }
-            } catch (Exception e) {
-
-                e.printStackTrace();
-            }
 
         }
 
@@ -442,6 +319,114 @@ public class ObsDataValidationTest {
 
         }
 
+        public void validateObsFormsData(boolean isMultiSelectEnabled, String inputDataFile, String toBeVerifiedDatafileName) {
 
+        List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson(inputDataFile);
+        String formName;
+        Map<String, String> columnNameType = new HashMap<>();
+        List<FormData> FQDNDataList = ToBeVerifiedDataJSONLoader.readFormDataFromJson(toBeVerifiedDatafileName);
+        String tableName;
+        Map<String, String> FQDNfieldValueMap = new HashMap<>();
+        String restURL;
+        String jobExecutionId;
+        int formCount = 0;
+
+        NewPatientPage np = PageFactory.initElements(driver, NewPatientPage.class);
+        List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
+        String patientIQ = "";
+        int patientId = 0;
+        Map<String, String> patientDetailValues = new HashMap<>();
+
+        try {
+
+            restURL = new Utils().getRestURL();
+
+            SeleniumHelper.login(driver);
+            SeleniumHelper.goToNewPatientForm(driver);
+
+            for (PatientData patientData: patientDetailsList) {
+
+                patientIQ = np.createPatient(patientData,driver);
+                patientId = Utils.getPatientIdentifier(openmrsConnection,patientIQ);
+
+            }
+
+            SeleniumHelper.goToProgramDashBoard(driver, patientIQ);
+            SeleniumHelper.goToConsultation(driver, patientIQ);
+
+
+            // For each Obs form declared in the input JSON file fill the data using selenium
+            // After filling the data and saving the form, also confirm that the data is correctly entered in the form
+
+            for (FormData formData : formDataList) {
+                formName = formData.getFormName();
+                System.out.println("Filling Data for Obs form from UI: " + formName);
+                SeleniumHelper.fillFormData(driver, formName, formData);
+
+            }
+
+            // Once data is filled in Obs forms above, run mart using Rest and poll till job is completed successfully
+
+            if (isMultiSelectEnabled) {
+                jobExecutionId = RestHelper.startBatchJob(restURL);
+            }
+            else {
+                jobExecutionId = RestHelper.startBatchJob(restURL, false);
+            }
+            if (RestHelper.pollUntilComplete(restURL, jobExecutionId) != null) {
+
+                System.out.println("mart Job is executed successfully");
+                //Thread.sleep(2000);
+
+                for (FormData formData : FQDNDataList) {
+
+                    // Fetch the input data that was entered to Obs form
+                    FQDNfieldValueMap = formData.getFieldValueMap();
+                    tableName = formData.getFormName();
+
+                    //From mart DB Fetch the column names and type ( int, str) of column along with data from the table for Obs form
+                    columnNameType = Utils.getTableColumnsAndTypes(postgresConnection, tableName);
+                    ResultSet rs = Utils.getTableData(postgresConnection, tableName, patientId);
+                    while (rs.next()) {
+                        for (String columnName : FQDNfieldValueMap.keySet()) {
+                            if (columnNameType.get(columnName).equals("text") || columnNameType.get(columnName).equals("date")) {
+                                String columnData ;
+                                columnData = rs.getString(columnName);
+                                //System.out.println("Column: " + columnName + " has data: " + columnData);
+                                System.out.println("Verifying column: " + columnName + ". str Data from DB: " + columnData + " Data from test: " + FQDNfieldValueMap.get(columnName));
+                                if (columnData != null) {
+                                    assertTrue("The output column value is not matching input data ", FQDNfieldValueMap.get(columnName).contains(columnData));
+
+                                }
+                                else {
+                                    assertEquals(columnData, FQDNfieldValueMap.get(columnName));
+                                }
+                            }
+                            else if (columnNameType.get(columnName).contains("int")) {
+
+                                Integer columnData = null;
+
+                                columnData = rs.getInt(columnName);
+                                //System.out.println("Column: " + columnName + " has data: " + columnData);
+                                System.out.println("Verifying column: " + columnName + ". int Data from DB: " + columnData + " Data from test: " + FQDNfieldValueMap.get(columnName));
+                                if (columnData != null) {
+                                    assertTrue("The output column value is not matching input data ", FQDNfieldValueMap.get(columnName).contains(columnData.toString()));
+                                }
+                                else {
+                                    assertEquals(columnData, FQDNfieldValueMap.get(columnName));
+                                }
+                            }
+                        }
+
+                    }
+                    System.out.print("Number of columns is: " + columnNameType.size());
+                }
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+    }
 
 }

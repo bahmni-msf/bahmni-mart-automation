@@ -1,12 +1,17 @@
 package org.bahmni.mart.automation.Pages;
 
+import org.bahmni.mart.automation.helpers.Utils;
 import org.openqa.selenium.WebDriver;
+
+import java.util.Properties;
 
 public class LoggedOutPage {
 
     private WebDriver driver;
 
-    private String PAGE_URL="https://qa-reporting.ehealthunit.org/bahmni/home/index.html";
+    Properties connprops = Utils.getExternalizedParameters();
+
+    private String PAGE_URL= connprops.getProperty("PAGE_URL");
 
     public LoggedOutPage(WebDriver driver){
 
