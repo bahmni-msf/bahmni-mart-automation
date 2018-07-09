@@ -1,7 +1,7 @@
 {
-  "first_stage_validation":{
-    "fstg_type_of_medical_information_received" : "New medical file",
-    "fstg_outcomes_for_1st_stage_surgical_validation" : "Valid",
+  "first_stage_validation": {
+    "fstg_type_of_medical_information_received": "New medical file",
+    "fstg_outcomes_for_1st_stage_surgical_validation": "Valid",
     "fstg_date_received": "2018-04-04",
     "fstg_is_the_medical_file_complete": "Yes",
     "stage": "4",
@@ -19,7 +19,7 @@
     "location_name": "Admission",
     "program_id": "1",
     "program_name": "Reconstructive Surgery",
-    "fstg_specialty_determined_by_mlo_multiselect": "Orthopedic;Plastic"
+    "fstg_specialty_determined_by_mlo_multiselect": "Orthopedic;Plastic;1;2"
   },
   "surgeon_pre_op_assessment_and_treatment_plan": {
     "sap_date_of_consultation": "2018-04-27",
@@ -27,7 +27,7 @@
     "sap_associated_vascular_injury": "Yes",
     "sap_is_patient_for_surgery": "No",
     "sap_initial_general_plan": "Needs Physio / Other consultation",
-    "sap_surgical_objective_multiselect": "Repair anatomy;Replace loss;Manage long-term pathology;Prevent future problems",
+    "sap_surgical_objective_multiselect": "Repair anatomy;Replace loss;Manage long-term pathology;Prevent future problems;1;2;3;4",
     "sap_frequency_of_operations": "One Operation",
     "sap_sites_donor_areas_excluded": "All objectives one site",
     "sap_estimated_length_of_stay": "Less than 30 days",

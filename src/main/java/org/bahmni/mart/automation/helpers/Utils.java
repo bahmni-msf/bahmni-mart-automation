@@ -104,7 +104,7 @@ public class Utils {
 
         while(rs1.next()) {
 
-            encounter_id=rs1.getInt("encounter_id");
+            encounter_id = rs1.getInt("encounter_id");
         }
 
         query = String.format("Select * from %s where patient_id=%d and encounter_id=%d order by obs_datetime", table_name,patientID, encounter_id);

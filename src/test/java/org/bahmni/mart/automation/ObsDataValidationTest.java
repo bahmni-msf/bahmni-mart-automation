@@ -23,6 +23,8 @@ public class ObsDataValidationTest {
         private static Connection openmrsConnection = null;
         private static Connection postgresConnection = null;
         private static WebDriver driver;
+        private static boolean isFormDataFilledOnce = false;
+        private static int patientId = 0;
 
         private ResultSet allmartTables = null;
 
@@ -69,11 +71,49 @@ public class ObsDataValidationTest {
 
         }
 
+        public void createPatientandfillDataFromUI(){
+
+                List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson("formData.json");
+                String formName;
+                NewPatientPage np = PageFactory.initElements(driver, NewPatientPage.class);
+                List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
+                String patientIQ = "";
+
+                try {
+
+                    SeleniumHelper.login(driver);
+                    SeleniumHelper.goToNewPatientForm(driver);
+
+                    for (PatientData patientData : patientDetailsList) {
+
+                        patientIQ = np.createPatient(patientData, driver);
+                        ObsDataValidationTest.patientId = Utils.getPatientIdentifier(openmrsConnection, patientIQ);
+
+                    }
+
+                    SeleniumHelper.goToProgramDashBoard(driver, patientIQ);
+                    SeleniumHelper.goToConsultation(driver, patientIQ);
+
+                    for (FormData formData : formDataList) {
+                        formName = formData.getFormName();
+                        System.out.println("Filling Data for Obs form from UI: " + formName);
+                        SeleniumHelper.fillFormData(driver, formName, formData);
+
+                    }
+
+                    isFormDataFilledOnce = true;
+
+            }
+
+            catch (Exception e) {
+
+                e.printStackTrace();
+            }
+        }
+
         @Test
         public void validateObsFormsWithoutMultiSelect(){
 
-            List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson("formData.json");
-            String formName;
             Map<String, String> columnNameType = new HashMap<>();
             List<FormData> FQDNDataList = ToBeVerifiedDataJSONLoader.readFormDataFromJson("formDataToBeVerified.json");
             String tableName;
@@ -81,37 +121,12 @@ public class ObsDataValidationTest {
             String restURL;
             String jobExecutionId;
 
-            NewPatientPage np = PageFactory.initElements(driver, NewPatientPage.class);
-            List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
-            String patientIQ = "";
-            int patientId = 0;
-
             try {
 
                 restURL = new Utils().getRestURL();
 
-                SeleniumHelper.login(driver);
-                SeleniumHelper.goToNewPatientForm(driver);
-
-                for (PatientData patientData: patientDetailsList) {
-
-                    patientIQ = np.createPatient(patientData,driver);
-                    patientId = Utils.getPatientIdentifier(openmrsConnection,patientIQ);
-
-                }
-
-                SeleniumHelper.goToProgramDashBoard(driver, patientIQ);
-                SeleniumHelper.goToConsultation(driver, patientIQ);
-
-
-                // For each Obs form declared in the input JSON file fill the data using selenium
-                // After filling the data and saving the form, also confirm that the data is correctly entered in the form
-
-                for (FormData formData : formDataList) {
-                    formName = formData.getFormName();
-                    System.out.println("Filling Data for Obs form from UI: " + formName);
-                    SeleniumHelper.fillFormData(driver, formName, formData);
-
+                if (!isFormDataFilledOnce) {
+                    createPatientandfillDataFromUI();
                 }
 
                 // Once data is filled in Obs forms above, run mart using Rest and poll till job is completed successfully
@@ -133,7 +148,7 @@ public class ObsDataValidationTest {
 
                         //From mart DB Fetch the column names and type ( int, str) of column along with data from the table for Obs form
                         columnNameType = Utils.getTableColumnsAndTypes(postgresConnection, tableName);
-                        ResultSet rs = Utils.getTableData(postgresConnection, tableName, 2390);
+                        ResultSet rs = Utils.getTableData(postgresConnection, tableName, ObsDataValidationTest.patientId);
                         ResultSetMetaData rsmd = rs.getMetaData();
                         int colcount = rsmd.getColumnCount();
                         int i;
@@ -155,7 +170,7 @@ public class ObsDataValidationTest {
                                     columnName = columnName.split("_multiselect")[0];
 
                                     for (String word : multiselectColumnValues) {
-                                        System.out.println(word);
+                                        //System.out.println(word);
                                         if (!multiselectTestData.contains(word)) {
                                             multiselectTestData.add(word);
                                         }
@@ -174,7 +189,7 @@ public class ObsDataValidationTest {
                                     if (!nonMultiTestData.isEmpty()) {
                                         dataMap.put(columnName, nonMultiTestData);
                                     }
-                                    System.out.println("Verifying column: " + columnName + ". str Data from DB: " + columnData + " Data from test: " + FQDNfieldValueMap.get(columnName));
+                                    //System.out.println("Verifying column: " + columnName + ". str Data from DB: " + columnData + " Data from test: " + FQDNfieldValueMap.get(columnName));
                                 }
                             }
                         }
@@ -185,9 +200,12 @@ public class ObsDataValidationTest {
                         System.out.println("Data from test file: " + multiselectTestData);
                         System.out.println("Data from DB: "+ multiselectDBData);
 
-                        assertEquals("The data validation for multiselect Table: " + tableName + " failed." + "multiselect value from Test: " + multiselectTestData + " " + "data values from mart: " + multiselectDBData, multiselectTestData, multiselectDBData );
+                        //assertEquals("The data validation for multiselect Table: " + tableName + " failed." + "multiselect value from Test: " + multiselectTestData + " " + "data values from mart: " + multiselectDBData, multiselectTestData, multiselectDBData );
+                        System.out.println("Verifying multiselect values in false case for table: " + tableName + ". str Data from DB: " + multiselectDBData + " Data from test: " + multiselectTestData);
+                        assertTrue("The data validation for multiselect Table: " + tableName + " failed." + "multiselect value from Test: " + multiselectTestData + " " + "data values from mart: " + multiselectDBData, multiselectTestData.containsAll(multiselectDBData));
 
                         for (String column: dataMap.keySet()) {
+                            System.out.println("Verifying column: " + column + ". str Data from DB: " + dataMap.get(column).get(0) + " Data from test: " + FQDNfieldValueMap.get(column));
                             assertEquals("The data validation for multiselect Table: " + tableName + " failed." + "non-multiselect value from Test: " + FQDNfieldValueMap.get(column) + " " + "data values from mart: " + dataMap.get(column), FQDNfieldValueMap.get(column), dataMap.get(column).get(0));
                         }
 
@@ -205,36 +223,15 @@ public class ObsDataValidationTest {
         @Test
         public void validateObsFormsWithMultiSelectAndAddMore(){
 
-                List<FormData> formDataList = FormInputDataJsonLoader.readFormDataFromJson("formData.json");
-                String formName, tableName, restURL, jobExecutionId;
+                String tableName, restURL, jobExecutionId;
                 List<FormData> toBeVerifiedDataList = ToBeVerifiedDataJSONLoader.readFormDataFromJson("obsMultiSelectDataToBeVerified.json");
                 Map<String, String> FQDNfieldValueMap = new HashMap<>();
-
-                NewPatientPage np = PageFactory.initElements(driver, NewPatientPage.class);
-                List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
-                String patientIQ = "";
-                int patientId = 0;
 
                 try {
 
                     restURL = new Utils().getRestURL();
-                    SeleniumHelper.login(driver);
-                    SeleniumHelper.goToNewPatientForm(driver);
-
-                    for (PatientData patientData: patientDetailsList) {
-                        patientIQ = np.createPatient(patientData,driver);
-                        patientId = Utils.getPatientIdentifier(openmrsConnection,patientIQ);
-                    }
-                    SeleniumHelper.goToProgramDashBoard(driver, patientIQ);
-                    SeleniumHelper.goToConsultation(driver, patientIQ);
-                    // For each Obs form declared in the input JSON file fill the data using selenium
-                    // After filling the data and saving the form, also confirm that the data is correctly entered in the form
-
-                    for (FormData formData : formDataList) {
-                        formName = formData.getFormName();
-                        System.out.println("Filling Data for Obs form from UI: " + formName);
-                        SeleniumHelper.fillFormData(driver, formName, formData);
-
+                    if (!isFormDataFilledOnce) {
+                        createPatientandfillDataFromUI();
                     }
 
                     // Once data is filled in Obs forms above, run mart using Rest and poll till job is completed successfully
@@ -250,7 +247,7 @@ public class ObsDataValidationTest {
                             FQDNfieldValueMap = formData.getFieldValueMap();
                             tableName = formData.getFormName();
                             //From mart DB Fetch the column names and type ( int, str) of column along with data from the table for Obs form
-                            ResultSet rs = Utils.getTableData(postgresConnection, tableName, patientId);
+                            ResultSet rs = Utils.getTableData(postgresConnection, tableName, ObsDataValidationTest.patientId);
 
                             while (rs.next()) {
                                 for (String columnName : FQDNfieldValueMap.keySet()) {
@@ -280,7 +277,8 @@ public class ObsDataValidationTest {
                             System.out.println("Data from test file: " + multiselectTestData);
                             System.out.println("Data from DB: "+ multiselectDBData);
 
-                            assertEquals("The data validation for multiselect Table: " + tableName + " failed." + "multiselect value from Test: " + multiselectTestData + " " + "data values from mart: " + multiselectDBData, multiselectTestData, multiselectDBData );
+                            //assertEquals("The data validation for multiselect Table: " + tableName + " failed." + "multiselect value from Test: " + multiselectTestData + " " + "data values from mart: " + multiselectDBData, multiselectTestData, multiselectDBData );
+                            assertTrue("The data validation for multiselect Table: " + tableName + " failed." + "multiselect value from Test: " + multiselectTestData + " " + "data values from mart: " + multiselectDBData, multiselectTestData.containsAll(multiselectDBData));
 
                         }
                     }
@@ -292,7 +290,6 @@ public class ObsDataValidationTest {
 
         }
 
-        @Test
         public void createPatientTest() throws SQLException {
 
             List<PatientData> patientDetailsList = PatientLoader.readFormDataFromJson();
@@ -313,7 +310,7 @@ public class ObsDataValidationTest {
 
 
 //            patientId = Utils.getPatientIdentifier(openmrsConnection,"JO102056M");
-            System.out.println("Patient Identifier for J0102056M is: " + patientId);
+            System.out.println("Patient Identifier is: " + patientId);
 
 
 
