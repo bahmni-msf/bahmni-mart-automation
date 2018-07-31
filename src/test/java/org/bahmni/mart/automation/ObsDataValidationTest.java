@@ -34,7 +34,7 @@ public class ObsDataValidationTest {
             postgresConnection = new Utils().getDBConnection("postgres");
 
             System.setProperty("webdriver.gecko.driver", "/Users/admin/Documents/Drivers/geckodriver");
-            System.setProperty("webdriver.chrome.driver", "/Users/admin/Documents/Drivers/chromedriver");
+            System.setProperty("webdriver.chrome.driver", "/Users/manjunab/Documents/chromeDriver/chromedriver");
             driver = new ChromeDriver();
             //driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 

@@ -25,7 +25,7 @@ public class RestHelper {
         else {
             return Unirest.post(getTaskExecutionUrl(hostUrl))
                     .queryString("name", "create-bahmni-mart")
-                    .queryString("arguments", "--spring.profiles.active=test,--spring.profiles.active=docker")
+                    .queryString("arguments", "--spring.profiles.active=test,docker")
                     .asString().getBody();
         }
     }
